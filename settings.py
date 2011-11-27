@@ -2,7 +2,55 @@
 
 import os, socket
 
-DEBUG = True
+if socket.gethostname() == 'web166.webfaction.com':
+    DEBUG = True
+    TEMPLATE_DEBUG = DEBUG
+    
+    # Absolute path to the directory that holds media.
+    # Example: "/home/media/media.lawrence.com/"
+    MEDIA_ROOT = '/home/rectangular/webapps/marked_static/'
+    
+    TEMPLATE_DIRS = (
+        # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+        # Always use forward slashes, even on Windows.
+        # Don't forget to use absolute paths, not relative paths.
+        '/home/rectangular/webapps/marked_django/marked/templates'
+    )
+    
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+            'NAME': 'rectangular_ma',                      # Or path to database file if using sqlite3.
+            'USER': 'rectangular_ma',                      # Not used with sqlite3.
+            'PASSWORD': '7bc2cfab',                  # Not used with sqlite3.
+            'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+            'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        }
+    }
+
+else:
+
+    DEBUG = True
+    
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+            'NAME': 'marked',                      # Or path to database file if using sqlite3.
+            'USER': 'root',                      # Not used with sqlite3.
+            'PASSWORD': '',                  # Not used with sqlite3.
+            'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+            'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        }
+    }
+
+    TEMPLATE_DIRS = (
+        os.path.abspath('templates/')
+        # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+        # Always use forward slashes, even on Windows.
+        # Don't forget to use absolute paths, not relative paths.
+    )
+
+
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -11,16 +59,6 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'marked',                      # Or path to database file if using sqlite3.
-        'USER': 'root',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
-}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -104,13 +142,6 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'marked.urls'
-
-TEMPLATE_DIRS = (
-    os.path.abspath('templates/')
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
