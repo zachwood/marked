@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<div class="row pad">
+    <div class="fourcol">
+        <form method="post" action="/">
+            {% csrf_token %}
+            <label for="link"></label>
+            <input type='text' value="" name="link" id="link" />
+            <input type="submit" value="add mark" />
+        </form>
+    </div>
+</div>
+
+{% for mark in marks %}
+<div class="row pad marks {% cycle 'light' 'dark' %}">
+    <div class="fivecol">
+        <a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.url }}</a>
+        <p class="time">added {{ mark.added|timesince }} ago</p>
+    </div>
+</div>
+{% endfor %}
+
+{% else %}
+
+<div class="row">
+    <div class="fourcol">
+        <p class="welcome">Welcome, new user. Please <a href="/accounts/login/">log in.</a></p>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock content %}

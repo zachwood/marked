@@ -1,0 +1,107 @@
+/* ============================== */
+/* ! Layout for desktop version   */
+/* ============================== */
+
+    * {
+        font-family:  Helvetica, sans-serif;
+    }
+
+	body {
+        background: #f9f9f9;
+	}
+
+    h1 {
+	    color: #00c19c;
+    }
+
+    h1 a {
+        color: #00c19c !important;
+        text-decoration: none;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    ul.messages {
+        padding: 0;
+        font-style: italic;
+        color: #00C19C;
+    }
+
+    .container {
+        padding-top: 45px;
+        border-top: 5px solid #00c19c;
+    }
+
+    input[type="text"] {
+        background-color: #fff;
+        border: 1px solid #aaa;
+        padding: 2px 0px 2px 2px;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    p, label {
+        color: #aaa;
+    }
+
+
+    p.time {
+        color: #ddd;
+        margin-top: 5px;
+    }
+
+    form.login {
+        padding-top: 20px;
+    }
+
+    a.mark, a.logout, a {
+        color: #00c19c;
+        text-decoration: none;
+    }
+
+    a.mark:hover, a.logout:hover, a:hover {
+        text-decoration: underline;
+    }
+
+    .row.pad {
+        padding: 10px 0;
+    }
+
+    .row.pad.marks {
+        padding: 20px 0;
+    }
+
+    div.logout {
+        padding-top: 10px;
+    }
+
+
+============================= 
+! Layout for mobile version   
+============================= 
+
+@media handheld, only screen and (max-width: 767px) {
+
+	body {
+		
+	}
+
+}
+
+
+/* ========================================== */
+/* ! Provide higher res assets for iPhone 4   */
+/* ========================================== */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) { 
+
+/*	.logo {
+		background: url(logo2x.jpg) no-repeat;
+		background-size: 212px 303px;
+	}*/
+
+}
