@@ -4,7 +4,6 @@ import os, socket
 
 if socket.gethostname() == 'web166.webfaction.com':
     DEBUG = True
-    TEMPLATE_DEBUG = DEBUG
     
     # Absolute path to the directory that holds media.
     # Example: "/home/media/media.lawrence.com/"
@@ -29,9 +28,8 @@ if socket.gethostname() == 'web166.webfaction.com':
     }
 
 else:
-
     DEBUG = True
-    
+
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
