@@ -34,7 +34,7 @@
         border-top: 5px solid #00c19c;
     }
 
-    input[type="text"] {
+    input[type='text'], input[type='password'] {
         background-color: #fff;
         border: 1px solid #aaa;
         padding: 2px 0px 2px 2px;
