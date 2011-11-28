@@ -3,7 +3,7 @@
 import os, socket
 
 if socket.gethostname() == 'web166.webfaction.com':
-    import settings_deploy.py
+    from settings_deploy import *
 
 else:
     DEBUG = True
