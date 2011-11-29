@@ -19,7 +19,7 @@ def home(request):
 
     marks = Bookmark.objects.filter(owner=request.user).order_by('-added')
 
-    return render_to_response('home.html', { 'marks': marks, 'debug': settings.DEBUG },
+    return render_to_response('home.html', { 'marks': marks, 'local_bookmarklet': False },
             context_instance=RequestContext(request) )
 
 

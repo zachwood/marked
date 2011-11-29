@@ -23,7 +23,7 @@
             <div class="fourcol"></div>
             <div class="onecol bookmarklet">
                 {% if user.is_authenticated %}
-                    {% if debug %}
+                    {% if local_bookmarklet %}
                         <a href="javascript:(function(){ window.open('http://localhost:8000/save/?link='+encodeURIComponent(location.href)); })();">bookmarklet</a>
                     {% else %}
                         <a href="javascript:(function(){ window.open('http://marked.goodnightstudio.com/save/?link='+encodeURIComponent(location.href)); })();">bookmarklet</a>
