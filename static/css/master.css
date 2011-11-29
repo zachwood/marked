@@ -80,6 +80,12 @@
         padding-top: 10px;
     }
 
+    p.welcome {
+        padding: 20px 0;
+        font-size: 16px;
+        line-height: 1.7em;
+    }
+
 
 ============================= 
 ! Layout for mobile version   
