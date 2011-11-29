@@ -65,6 +65,7 @@
 
     a.mark:hover, a.logout:hover, a:hover {
         text-decoration: underline;
+        color: #00c19c;
     }
 
     .row.pad {
@@ -75,7 +76,7 @@
         padding: 20px 0;
     }
 
-    div.logout {
+    div.logout, div.bookmarklet {
         padding-top: 10px;
     }
 
