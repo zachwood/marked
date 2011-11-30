@@ -19,7 +19,7 @@
 <div class="row pad marks {% cycle 'light' 'dark' %}">
     <div class="fivecol">
         <a href="{{ mark.url }}" class="mark" target="_blank"><h3>{{ mark.title }}</h3></a>
-        <a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.url|urlizetrunc:30 }}</a>
+        <a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.url|urlizetrunc:50 }}</a>
         <p class="time">added {{ mark.added|timesince }} ago</p>
     </div>
 </div>
