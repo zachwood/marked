@@ -59,13 +59,13 @@
     }
 
     a.mark, a.logout, a {
-        color: #00c19c;
+        color: #00c19c !important;
         text-decoration: none;
     }
 
     a.mark:hover, a.logout:hover, a:hover {
         text-decoration: underline;
-        color: #00c19c;
+        color: #00c19c !important;
     }
 
     .row.pad {
@@ -74,6 +74,11 @@
 
     .row.pad.marks {
         padding: 20px 0;
+    }
+
+    .row.pad.marks h3 {
+        margin: 0 0 5px 0;
+        color: #00c19c;
     }
 
     div.logout, div.bookmarklet {

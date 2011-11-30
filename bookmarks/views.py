@@ -9,6 +9,9 @@ from django.template import RequestContext, loader
 from bookmarks.models import Bookmark
 from accounts.models import UserProfile
 
+import urllib2
+import BeautifulSoup
+
 @login_required(login_url='/accounts/login/')
 def home(request):
     
@@ -42,10 +45,11 @@ def check_save_url(request, link):
 
     user_profile = UserProfile.objects.get(user = request.user)
     check = Bookmark.objects.filter(url = link, owner = user_profile)
-    print link
 
     if not check:
-        m = Bookmark(url = link, owner = user_profile)
+        soup = BeautifulSoup.BeautifulSoup(urllib2.urlopen(link))
+        title = soup.title.string
+        m = Bookmark(url = link, owner = user_profile, title = title)
         m.save()
         messages.add_message(request, messages.INFO, 'Consider that marked')
     else:
