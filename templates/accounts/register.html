@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+<div class="row">
+    <div class="sixcol">
+        <p class="welcome">
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="fivecol">
+
+        {% if form.errors %}
+            <p>{{ form.errors }}</p>
+        {% endif %}
+
+
+        {{ form }}
+
+        <form class="register" method="post" action="{% url 'django.contrib.auth.views.SetPasswordForm' %}">
+            {% csrf_token %}
+            <label for="id_username">{{ form.username.label_tag }}</label><br />
+            {{ form.username }}<br /><br />
+
+            <label for="id_password">{{ form.password.label_tag }}</label><br />
+            {{ form.password }}<br /><br />
+
+            <input type="submit" value="login" />
+            <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+

@@ -12,8 +12,13 @@ urlpatterns = patterns('',
     url(r'^$', 'bookmarks.views.home', name='home'),
     url(r'^save/$', 'bookmarks.views.bookmarklet_save', name="save"),
 
+    #url(r'^accounts/register/$', 'accounts.views.register', name="register"),
+
     (r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'accounts/login.html'}),
     (r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'template_name': 'accounts/logout.html'}),
+    (r'^accounts/changepassword/$', 'django.contrib.auth.views.password_change', {'template_name': 'accounts/change_password.html'}),
+    (r'^accounts/changepassword/done/$', 'django.contrib.auth.views.password_change_done', {'template_name': 'accounts/change_password_done.html'}),
+
     # url(r'^marked/', include('marked.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

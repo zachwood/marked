@@ -68,6 +68,12 @@
         color: #00c19c !important;
     }
 
+    p.info {
+        padding: 10px 0;
+        font-size: 16px;
+        line-height: 1.7em;
+    }
+
     .row.pad {
         padding: 10px 0;
     }
