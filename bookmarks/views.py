@@ -60,7 +60,6 @@ def public_marks(request, show_user):
             context_instance=RequestContext(request) )
 
 @login_required
-@csrf_exempt
 def bookmarklet_save(request):
     # where the bookmarklet first lands them
     if request.method == 'GET':
@@ -71,24 +70,19 @@ def bookmarklet_save(request):
             user_profile = get_object_or_404(UserProfile, user = request.user)
             check = Bookmark.objects.filter(url = link, owner = user_profile)
 
-            old_bookmarklet = False
-
             if not check:
                 # if they have the old bookmarklet, load the title the old way
                 if 'title' in request.GET:
                     title = request.GET['title']
                 else:
-                    soup = BeautifulSoup.BeautifulSoup(urllib2.urlopen(link))
-                    title = soup.title.string
-                    old_bookmarklet = True
+                    messages.add_message(request, messages.INFO, "There's been an error. You're using an old version of our Bookmarklet. "
+                            + "Just drag the new version on this site to your bookmarks bar and you will be good to go!")
+
+                    return redirect(home)
 
             else:
                 messages.add_message(request, messages.INFO, 'You have already added this mark')
                 return redirect(home)
-
-            if old_bookmarklet:
-                messages.add_message(request, messages.INFO, "You're using an old version of our Bookmarklet. "
-                        + "Just drag the new version on this site to your bookmarks bar and you're good to go!")
     
     # post vars, AKA time to save the bookmark
     elif request.method == 'POST':
