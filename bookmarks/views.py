@@ -64,7 +64,6 @@ def bookmarklet_save(request):
     if request.method == 'GET':
         if request.GET['link']:
             link = request.GET['link']
-            title = request.GET.get('title', '')
 
             # check user and save url
             user_profile = get_object_or_404(UserProfile, user = request.user)
@@ -74,12 +73,12 @@ def bookmarklet_save(request):
 
             if not check:
                 # if they have the old bookmarklet, load the title the old way
-                if not title:
+                if 'title' in request.GET:
+                    title = request.GET['title']
+                else:
                     soup = BeautifulSoup.BeautifulSoup(urllib2.urlopen(link))
                     title = soup.title.string
                     old_bookmarklet = True
-                else:
-                    title = request.GET['title']
 
             else:
                 messages.add_message(request, messages.INFO, 'You have already added this mark')
