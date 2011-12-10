@@ -25,9 +25,9 @@
     </div>
 </div>
 
+{% if no_marks and page_owner %}
 <div class="row pad">
     <div class="fivecol">
-        {% if no_marks and page_owner %}
             <p class="info">
                 Welcome! It looks like you haven't saved any marks yet.
                 All you need to do, to get started, is to drag the bookmarklet
@@ -44,16 +44,20 @@
             <p class="info">
                 Pretty easy, huh?
             </p>
-        {% endif %}
+    </div>
+</div>
+{% endif %}
 
-        {% if no_marks and not page_owner %}
+{% if no_marks and not page_owner %}
+<div class="row pad">
+    <div class="fivecol">
             <p class="info">
                 Hrm. It doesn't look like this user has saved any public marks.
                 That's sad. :(
             </p>
-        {% endif %}
     </div>
 </div>
+{% endif %}
 
 {% for mark in marks %}
 <div class="row pad marks {% cycle 'light' 'dark' %}">

@@ -28,6 +28,10 @@ def home(request):
             #'local_bookmarklet': False },
             #context_instance=RequestContext(request) )
 
+    messages.add_message(request, messages.INFO, 'December 10th: We have released a new version of our'
+        + ' bookmarklet. If you would be so kind and update it on your bookmark bar,'
+        + ' that would make us very happy. <3')
+
 
     user_profile = UserProfile.objects.get(user = request.user)
     return redirect(user_profile)
