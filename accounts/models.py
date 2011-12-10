@@ -6,3 +6,6 @@ class UserProfile(models.Model):
 
     def __unicode__(self):
         return u'%s' % self.user
+
+    def get_absolute_url(self):
+        return "/profile/%s/" % self.user.username

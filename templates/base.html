@@ -18,13 +18,13 @@
     <div class="container">
         <div class="row">
             <div class="threecol">
-                <h1><a href="/">marked.</a></h1>
+                <h1><a href="/">{% block site-name %}marked.{% endblock site-name %}</a></h1>
             </div>
             <div class="fourcol"></div>
             <div class="onecol bookmarklet">
                 {% if user.is_authenticated %}
                     {% if local_bookmarklet %}
-                        <a href="javascript:(function(){ window.open('http://localhost:8000/save/?link='+encodeURIComponent(location.href)); })();">bookmarklet</a>
+                        <a href="javascript:(function(){ window.open('http://localhost:8000/save/?link='+encodeURIComponent(location.href)+'&title='+document.title); })();">bookmarklet (debug)</a>
                     {% else %}
                         <a href="javascript:(function(){ window.open('http://marked.goodnightstudio.com/save/?link='+encodeURIComponent(location.href)); })();">bookmarklet</a>
                     {% endif %}

@@ -58,14 +58,14 @@
         padding-top: 20px;
     }
 
-    a.mark, a.logout, a {
-        color: #00c19c !important;
+    a.mark, a.logout, a, a:visited, a:link {
+        color: #00c19c;
         text-decoration: none;
     }
 
     a.mark:hover, a.logout:hover, a:hover {
         text-decoration: underline;
-        color: #00c19c !important;
+        color: #00c19c;
     }
 
     p.info {
@@ -76,6 +76,9 @@
 
     .row.pad {
         padding: 10px 0;
+    }
+
+    .row.marks:hover {
     }
 
     .row.pad.marks {
@@ -95,6 +98,61 @@
         padding: 20px 0;
         font-size: 16px;
         line-height: 1.7em;
+    }
+
+    a.privacy {
+        color: #ddd;
+        /*text-indent: -9999px;*/
+        /*display: block;*/
+        /*height: 5px;*/
+        /*width: 5px;*/
+    }
+
+    a.privacy.public {
+        font-weight: bold;
+        /*background: #00c19c;*/
+        color: #00c19c;
+    }
+
+    a.privacy.private {
+        /*background: #ff7878;*/
+        color: #ff7878;
+    }
+
+    div.info a.delete:link {
+        color: #ff7878;
+    }
+
+    /*
+     *for the save page
+     */
+
+    div.row.big-pad {
+        padding: 60px 0;
+    }
+
+    form.save p {
+        padding: 5px 0;
+    }
+
+    form.save input[type="text"]
+    {
+        font-size: 16px;
+        line-height: 1.75em;
+    }
+
+    form.save input[type="text"] {
+        width: 100%;
+    }
+
+    form.save input[type="submit"] {
+        display: none;
+    }
+
+    form.save a.privacy {
+        font-size: 16px;
+        margin: 20px 10px 0 0;
+        display: inline-block;
     }
 
 
