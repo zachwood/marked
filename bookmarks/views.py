@@ -44,7 +44,7 @@ def user_page(request, show_user):
 
 
     return render_to_response('home.html', { 'marks': marks, 
-            'local_bookmarklet': True, 'show_user': show_user, 'page_owner': page_owner },
+            'local_bookmarklet': False, 'show_user': show_user, 'page_owner': page_owner },
             context_instance=RequestContext(request) )
 
 
