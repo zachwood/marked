@@ -64,7 +64,7 @@ def bookmarklet_save(request):
     if request.method == 'GET':
         if request.GET['link']:
             link = request.GET['link']
-            title = request.GET.get('title', False)
+            title = request.GET.get('title', '')
 
             # check user and save url
             user_profile = get_object_or_404(UserProfile, user = request.user)
