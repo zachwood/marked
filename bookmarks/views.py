@@ -91,7 +91,7 @@ def bookmarklet_save(request):
                         + "Just drag the new version on this site to your bookmarks bar and you're good to go!")
     
     # post vars, AKA time to save the bookmark
-    @csrf_exempt
+    @csrf_protect
     elif request.method == 'POST':
         link = request.POST['link']
         title = request.POST['title']
@@ -111,7 +111,7 @@ def bookmarklet_save(request):
         return redirect(home)
 
     # they got here somehow without post or get vars
-    @csrf_exempt
+    @csrf_protect
     else:
         return redirect(home)
 
