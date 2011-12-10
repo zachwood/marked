@@ -36,6 +36,7 @@ def home(request):
 def user_page(request, show_user):
     check_user = get_object_or_404(User, username=show_user)
 
+
     if request.user.username == show_user:
         page_owner = True
         marks = Bookmark.objects.filter(owner=request.user).order_by('-added')
@@ -43,9 +44,17 @@ def user_page(request, show_user):
         page_owner = False
         marks = Bookmark.objects.filter(owner__user__username=show_user).filter(public=True).order_by('-added')
 
+    if marks.exists():
+        no_marks = False
+    else:
+        no_marks = True
+
+    print marks.exists()
+
 
     return render_to_response('home.html', { 'marks': marks, 
-            'local_bookmarklet': False, 'show_user': show_user, 'page_owner': page_owner },
+            'local_bookmarklet': False, 'show_user': show_user, 'page_owner': page_owner,
+            'no_marks': no_marks },
             context_instance=RequestContext(request) )
 
 

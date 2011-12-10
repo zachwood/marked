@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 
+{% block site-name %}
+    {% if not page_owner %}
+        marked(by {{ show_user}})
+    {% else %}
+        marked
+    {% endif %}
+{% endblock %}
+
 {% block content %}
 
 {% if user.is_authenticated %}
@@ -17,9 +25,41 @@
     </div>
 </div>
 
+<div class="row pad">
+    <div class="fivecol">
+        {% if no_marks and page_owner %}
+            <p class="info">
+                Welcome! It looks like you haven't saved any marks yet.
+                All you need to do, to get started, is to drag the bookmarklet
+                in the top right of this site to your browser's bookmark bar.
+            </p>
+
+            <p class="info">
+                Then all you need to do, is to click that bookmarklet in your browser
+                bar whenever you're on a neat site that you want save for later.
+            </p>
+
+            <p class="info">Once you start saving marks, they'll show up right here.</p>
+
+            <p class="info">
+                Pretty easy, huh?
+            </p>
+        {% endif %}
+
+        {% if no_marks and not page_owner %}
+            <p class="info">
+                Hrm. It doesn't look like this user has saved any public marks.
+                That's sad. :(
+            </p>
+        {% endif %}
+    </div>
+</div>
+
 {% for mark in marks %}
 <div class="row pad marks {% cycle 'light' 'dark' %}">
     <div class="fivecol">
+
+
         <a href="{{ mark.url }}" class="mark" target="_blank"><h3>{{ mark.title }}</h3></a>
         <a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.url|urlizetrunc:50 }}</a>&nbsp;
         {% if page_owner %}
