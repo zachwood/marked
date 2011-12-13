@@ -63,7 +63,7 @@
     <div class="fivecol">
 
         {% for mark in marks %}
-            <div class="marks pad {% cycle 'light' 'dark' %}">
+            <div class="marks pad {% cycle 'lightbg' 'darkbg' %}">
                 <a href="{{ mark.url }}" class="mark" target="_blank"><h3>{{ mark.title }}</h3></a>
                 <a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.url|urlizetrunc:50 }}</a>&nbsp;
                 {% if page_owner %}
