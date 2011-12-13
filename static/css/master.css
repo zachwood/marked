@@ -49,7 +49,7 @@
     }
 
 
-    p.time {
+    p.time, span.light, .light {
         color: #ddd;
         margin-top: 5px;
     }
@@ -74,18 +74,18 @@
         line-height: 1.7em;
     }
 
-    .row.pad {
+    .pad {
         padding: 10px 0;
     }
 
-    .row.marks:hover {
+    .marks:hover {
     }
 
-    .row.pad.marks {
+    .pad.marks {
         padding: 20px 0;
     }
 
-    .row.pad.marks h3 {
+    .pad.marks h3 {
         margin: 0 0 5px 0;
         color: #00c19c;
     }
@@ -98,6 +98,21 @@
         padding: 20px 0;
         font-size: 16px;
         line-height: 1.7em;
+    }
+
+    a.light, a.light:link, a.light:visited,
+    .light a, .light a:link, .light a:visited,
+    h3.light {
+        color: #aaa !important;
+    }
+
+    p.recent {
+        padding: 0;
+        margin: 0;
+    }
+
+    p.recent h3 {
+        font-size: 12px !important;
     }
 
     a.privacy {
@@ -153,6 +168,10 @@
         font-size: 16px;
         margin: 20px 10px 0 0;
         display: inline-block;
+    }
+
+    .drag {
+        cursor: move;
     }
 
 

@@ -28,9 +28,7 @@ def home(request):
             #'local_bookmarklet': False },
             #context_instance=RequestContext(request) )
 
-    messages.add_message(request, messages.INFO, 'December 10th: We have released a new version of our'
-        + ' bookmarklet. If you would be so kind and update it on your bookmark bar,'
-        + ' that would make us very happy. <3')
+    # messages.add_message(request, messages.INFO, 'December 10th: We have released a new version of our');
 
 
     user_profile = UserProfile.objects.get(user = request.user)
@@ -39,7 +37,6 @@ def home(request):
 @login_required
 def user_page(request, show_user):
     check_user = get_object_or_404(User, username=show_user)
-
 
     if request.user.username == show_user:
         page_owner = True
@@ -53,12 +50,11 @@ def user_page(request, show_user):
     else:
         no_marks = True
 
-    print marks.exists()
-
+    latest = Bookmark.objects.filter(public=True).order_by('-added')[0:10]
 
     return render_to_response('home.html', { 'marks': marks, 
             'local_bookmarklet': False, 'show_user': show_user, 'page_owner': page_owner,
-            'no_marks': no_marks },
+            'no_marks': no_marks, 'latest': latest },
             context_instance=RequestContext(request) )
 
 
