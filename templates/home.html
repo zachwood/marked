@@ -87,37 +87,39 @@
 
     <div class="threecol">
        
-        {% for recent in latest %}
-            {% if page_owner %}
-                {% if recent.owner.user.username != user.username %}
-                    <div class="recent marks pad {% cycle 'light' 'dark' %}">
-                        <a href="{{ recent.url }}" class="latest light" target="_blank"><h3 class="light">{{ recent.title }}</h3></a>
-                        <span class="light">by <a href="/profile/{{ recent.owner }}/">{{ recent.owner }}</a></span>
-                        <span class="light">added {{ recent.added|timesince }} ago </span>
-                    </div>
+        {% if not no_marks %}
+            {% for recent in latest %}
+                {% if page_owner %}
+                    {% if recent.owner.user.username != user.username %}
+                        <div class="recent marks pad {% cycle 'light' 'dark' %}">
+                            <a href="{{ recent.url }}" class="latest light" target="_blank"><h3 class="light">{{ recent.title }}</h3></a>
+                            <span class="light">by <a href="/profile/{{ recent.owner }}/">{{ recent.owner }}</a></span>
+                            <span class="light">added {{ recent.added|timesince }} ago </span>
+                        </div>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
-        {% endfor %}
+            {% endfor %}
+        {% endif %}
     </div>
 
 </div>
 
 {% else %}
 
-<div class="row">
-    <div class="fourcol">
-        <p class="welcome">
-        Hi. Let me introduce myself, I'm <strong>marked</strong>. I
-        aim to take care of your bookmarks. Anywhere. On your phone, your desktop,
-        your tablet. If it has a web browser, I'll play nicely. I like to do things
-        as simple as possible. I'm clarity for your post bookmarkist world.
-        (pronounced: post book marxist)</p>
+    <div class="row">
+        <div class="fourcol">
+            <p class="welcome">
+            Hi. Let me introduce myself, I'm <strong>marked</strong>. I
+            aim to take care of your bookmarks. Anywhere. On your phone, your desktop,
+            your tablet. If it has a web browser, I'll play nicely. I like to do things
+            as simple as possible. I'm clarity for your post bookmarkist world.
+            (pronounced: post book marxist)</p>
 
-        <p class="welcome">
-        We're currently in closed ultra ghetto beta. If you have a login, please do so
-        <a href="/accounts/login/">log in.</a></p>
+            <p class="welcome">
+            We're currently in closed ultra ghetto beta. If you have a login, please do so
+            <a href="/accounts/login/">log in.</a></p>
+        </div>
     </div>
-</div>
 
 {% endif %}
 
