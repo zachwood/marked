@@ -50,7 +50,7 @@ def user_page(request, show_user):
     else:
         no_marks = True
 
-    latest = Bookmark.objects.filter(public=True).order_by('-added')[:10]
+    latest = Bookmark.objects.filter(public=True).exclude(owner__user__username=request.user).order_by('-added')[:10]
 
     return render_to_response('home.html', { 'marks': marks, 
             'local_bookmarklet': False, 'show_user': show_user, 'page_owner': page_owner,

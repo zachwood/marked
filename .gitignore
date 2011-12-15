@@ -3,3 +3,4 @@
 bin/
 include/
 settings_deploy.py
+*.un~
