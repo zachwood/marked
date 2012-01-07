@@ -77,6 +77,29 @@ def view_mark(request, mark_id):
             context_instance=RequestContext(request) )
 
 @login_required
+def update_mark(request, mark_id):
+    mark = get_object_or_404(Bookmark, pk=mark_id)
+
+    print mark
+    print request.user
+    print mark.owner.user
+
+    if request.user == mark.owner.user:
+        if request.method == 'POST':
+            title = request.POST['mark_title']
+            privacy = request.POST['privacy']
+
+            mark.title = title
+            if privacy == 'public':
+                mark.public = True
+            else:
+                mark.public = False
+
+            mark.save()
+
+    return redirect(view_mark, mark_id=mark_id)
+
+@login_required
 def bookmarklet_save(request):
     # where the bookmarklet first lands them
     if request.method == 'GET':

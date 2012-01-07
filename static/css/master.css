@@ -90,6 +90,21 @@
         color: #00c19c;
     }
 
+    .marks input#mark_title {
+        font-size: larger;
+        margin-bottom: 5px;
+        width: 100%;
+        padding: 2px 2px 2px 1px;
+    }
+
+    .marks input[type="submit"]#mark_save {
+        margin: 20px 0;
+    }
+
+    .marks select#mark_privacy {
+        margin: 10px 0;
+    }
+
     div.logout, div.bookmarklet {
         padding-top: 10px;
     }

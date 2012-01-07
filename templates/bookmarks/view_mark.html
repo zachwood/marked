@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block site-name %}
-    <a href="/" title="return to your marked">marked</a>
+    <a href="/" title="return to your marked">marked</a>(edit)
 {% endblock %}
 
 {% block content %}
@@ -22,19 +22,27 @@
     <div class="fivecol">
 
         {% for mark in marks %}
-            <div class="marks pad {% cycle 'lightbg' 'darkbg' %}">
-                <h3><a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.title }}</a></h3>
+            <div class="marks pad">
+
+                <form method="post" action="/mark/{{ mark.pk }}/update/">
+                {% csrf_token %}
+
+                <input type="text" value="{{ mark.title }}" name="mark_title" id="mark_title" />
                 <a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.url|urlizetrunc:50 }}</a>&nbsp;
+                <p class="time">added {{ mark.added|timesince }} ago</p>
                 {% ifequal mark.owner.user user %}
-                    {% if mark.public %}
-                        <p class="public pad">public</p>
-                    {% else %}
-                        <p class="private pad">private</p>
-                    {% endif %}
+
+                    <select name="privacy" id="mark_privacy">
+                        <option value="public" {% if mark.public %} selected="selected" {% endif %}>public</option>
+                        <option value="private" {% if not mark.public %} selected="selected" {% endif %}>private</option>
+                    </select>
 
                     <!--<a href="/mark/{{ mark.pk }}/delete/" class="delete">delete</a>-->
                 {% endifequal %}
-                <p class="time">added {{ mark.added|timesince }} ago</p>
+
+                <input type="submit" value="save" id="mark_save" />
+
+                </form>
             </div>
         {% endfor %}
 
