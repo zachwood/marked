@@ -59,7 +59,7 @@
     <div class="container">
         <div class="row">
             <div class="sixcol">
-                <h1><a href="/" title="return to your marked">{% block site-name %}marked.{% endblock site-name %}</a></h1>
+                <h1>{% block site-name %}<a href="/" title="return to your marked">marked.</a>{% endblock site-name %}</h1>
             </div>
             <div class="onecol bookmarklet">
                 {% if user.is_authenticated %}

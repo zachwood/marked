@@ -69,6 +69,14 @@ def public_marks(request, show_user):
             context_instance=RequestContext(request) )
 
 @login_required
+def view_mark(request, mark_id):
+
+    marks = Bookmark.objects.filter(owner=request.user).filter(pk=mark_id)
+    
+    return render_to_response('bookmarks/view_mark.html', { 'marks': marks },
+            context_instance=RequestContext(request) )
+
+@login_required
 def bookmarklet_save(request):
     # where the bookmarklet first lands them
     if request.method == 'GET':

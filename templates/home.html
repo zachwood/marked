@@ -2,9 +2,9 @@
 
 {% block site-name %}
     {% if not page_owner %}
-        marked(by {{ show_user}})
+        <a href="/" title="return to your marked">marked</a>(by {{ show_user}})
     {% else %}
-        marked
+        <a href="/" title="return to your marked">marked</a>
     {% endif %}
 {% endblock %}
 
@@ -67,14 +67,13 @@
 
         {% for mark in marks %}
             <div class="marks pad {% cycle 'lightbg' 'darkbg' %}">
-                <a href="{{ mark.url }}" class="mark" target="_blank"><h3>{{ mark.title }}</h3></a>
+                <h3><a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.title }}</a></h3>
                 <a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.url|urlizetrunc:50 }}</a>&nbsp;
                 {% if page_owner %}
                     {% if mark.public %}
-                    <a href="#" class="privacy public" alt="public" title="{{ mark.pk }}: public">#</a>
+                        <a href="/mark/{{ mark.pk }}/view/" class="privacy public" alt="public" title="{{ mark.pk }}: public">#</a>
                     {% else %}
-                        <a href="#" class="privacy private" alt="private" title="{{ mark.pk }}: private">#</a>
-                        <!-- /mark/{{ mark.pk }}/view/" -->
+                        <a href="/mark/{{ mark.pk }}/view/" class="privacy private" alt="private" title="{{ mark.pk }}: private">#</a>
                     {% endif %}
 
                     <!--<a href="/mark/{{ mark.pk }}/delete/" class="delete">delete</a>-->
@@ -94,7 +93,7 @@
             {% for recent in latest %}
                 {% if page_owner %}
                     <div class="recent marks pad {% cycle 'light' 'dark' %}">
-                        <a href="{{ recent.url }}" class="latest light" target="_blank"><h3 class="light">{{ recent.title }}</h3></a>
+                        <h3 class="light"><a href="{{ recent.url }}" class="latest light" target="_blank">{{ recent.title }}</a></h3>
                         <span class="light">by <a href="/profile/{{ recent.owner }}/">{{ recent.owner }}</a></span>
                         <span class="light">added {{ recent.added|timesince }} ago </span>
                     </div>

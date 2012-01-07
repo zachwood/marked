@@ -11,6 +11,9 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'bookmarks.views.home', name='home'),
     url(r'^save/$', 'bookmarks.views.bookmarklet_save', name="save"),
+
+    url(r'^mark/(?P<mark_id>\d+)/view/$', 'bookmarks.views.view_mark', name="view_mark"),
+
     url(r'^profile/(?P<show_user>\w+)/$', 'bookmarks.views.user_page', name="show_user"),
     url(r'^profile/(?P<show_user>\w+)/public/$', 'bookmarks.views.public_marks', name="public_marks"),
 
