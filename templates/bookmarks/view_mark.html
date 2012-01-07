@@ -11,13 +11,12 @@
 {% if not page_owner %}
 <div class="row pad">
     <div class="fivecol">
-        <p class="info">
-            Sorry, this isn't your mark! Return <a href="/">home?</a>
+        <p class="info light">
+            <!-- not page owner -->
         </p>
     </div>
 </div>
-
-{% else %}
+{% endif %}
 
 <div class="row pad marks">
     <div class="fivecol">
@@ -59,8 +58,6 @@
     </div>
 
 </div>
-{% endif %}
-
 {% else %}
     <p>Sorry, you're not logged in!</p>
 {% endif %}
