@@ -3,7 +3,8 @@ from accounts.models import UserProfile
 
 class Bookmark(models.Model):
     url = models.URLField(verify_exists=False)
-    added = models.DateTimeField(auto_now=True)
+    added = models.DateTimeField(auto_now_add=True)
+    edited = models.DateTimeField(auto_now=True)
     owner = models.ForeignKey(UserProfile)
     title = models.CharField(max_length=255, null=False, blank=True)
     public = models.BooleanField()
