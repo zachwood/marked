@@ -51,7 +51,7 @@
 
     p.time, span.light, .light {
         color: #ddd;
-        margin-top: 5px;
+        /*margin-top: 5px;*/
     }
 
     form.login {
