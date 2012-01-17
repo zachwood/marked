@@ -1,6 +1,7 @@
 *.swp
 *.pyc
 bin/
+lib/
 include/
 settings_deploy.py
 *.un~
