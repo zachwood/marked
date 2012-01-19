@@ -9,11 +9,11 @@
 {% if user.is_authenticated %}
 
 {% for markuser in users %}
+
+{% with total_marks=markuser.bookmark_set.count %}
+
+{% if total_marks %}
 <div class="row pad marks">
-
-    {% with total_marks=markuser.bookmark_set.count %}
-
-    {% if total_marks %}
 
     <div class="twocol pad">
         {% ifequal markuser.user user %}
@@ -41,11 +41,11 @@
     <div class="threecol last">
     </div>
 
-    {% endif %} {# if total_marks #}
-
-    {% endwith %}
-
 </div>
+{% endif %} {# if total_marks #}
+
+{% endwith %}
+
 {% endfor %} {# markuser in users #}
 
 
