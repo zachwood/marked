@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block site-name %}
+    <a href="/" title="return to your marked">marked</a>(by everyone)
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+{% for markuser in users %}
+<div class="row pad marks">
+
+    {% with total_marks=markuser.bookmark_set.count %}
+
+    {% if total_marks %}
+
+    <div class="twocol pad">
+        {% ifequal markuser.user user %}
+            <p class="user"><b>{{ markuser.user.username }}</b>({{ total_marks }})</p>
+            <p class="light">this is you</p>
+        {% else %}
+            <p class="user"><b>
+                <a href="/profile/{{ markuser.user }}/">{{ markuser.user.username }}</a>({{ total_marks }})
+            </b></p>
+        {% endifequal %}
+    </div>
+
+    <div class="sevencol pad">
+        {% for mark in markuser.three_recent_set %}
+            <div class="marks {% cycle 'lightbg' 'darkbg' %}">
+                <h3><a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.title }}</a></h3>
+                <a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.url|urlizetrunc:50 }}</a>&nbsp;
+                <p class="time">added {{ mark.added|timesince }} ago</p>
+            </div>
+            <div class="pad"></div>
+        {% endfor %}
+
+    </div>
+
+    <div class="threecol last">
+    </div>
+
+    {% endif %} {# if total_marks #}
+
+    {% endwith %}
+
+</div>
+{% endfor %} {# markuser in users #}
+
+
+</div>
+{% else %}
+    <p>Sorry, you're not logged in!</p>
+{% endif %}
+
+{% endblock content %}
+
+

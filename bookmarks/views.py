@@ -16,7 +16,7 @@ import BeautifulSoup
 
 @login_required
 def home(request):
-    
+
     if request.method == 'POST':
         if request.POST['link']:
             link = request.POST['link']
@@ -37,6 +37,8 @@ def home(request):
 @login_required
 def user_page(request, show_user):
     check_user = get_object_or_404(User, username=show_user)
+
+    path = request.path
 
     if request.user.username == show_user:
         page_owner = True
@@ -77,12 +79,22 @@ def view_mark(request, mark_id):
             context_instance=RequestContext(request) )
 
 @login_required
+def everyone(request):
+    users = UserProfile.objects.all();
+
+    path = request.path
+
+    return render_to_response('bookmarks/everyone.html', { 'users': users,
+            'path': path },
+            context_instance=RequestContext(request) )
+
+@login_required
 def update_mark(request, mark_id):
     mark = get_object_or_404(Bookmark, pk=mark_id)
 
-    print mark
-    print request.user
-    print mark.owner.user
+    #print mark
+    #print request.user
+    #print mark.owner.user
 
     if request.user == mark.owner.user:
         if request.method == 'POST':
@@ -96,6 +108,7 @@ def update_mark(request, mark_id):
                 mark.public = False
 
             mark.save()
+            messages.add_message(request, messages.INFO, 'Mark has been updated.')
 
     return redirect(view_mark, mark_id=mark_id)
 

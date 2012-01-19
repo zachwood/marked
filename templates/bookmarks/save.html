@@ -36,7 +36,7 @@
 </div>
 
 <div class="save row">
-    <div class="eightcol">
+    <div class="sevencol">
         <form method="post" action="{% url bookmarks.views.bookmarklet_save %}" class="save" id="save_form">
             {% csrf_token %}
             <p><input type='text' name="title" id="title" value="{{ title }}" /></p>

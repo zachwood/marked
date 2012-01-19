@@ -63,7 +63,7 @@
 {% endif %}
 
 <div class="row pad marks">
-    <div class="fivecol">
+    <div class="sevencol">
 
         {% for mark in marks %}
             <div class="marks pad {% cycle 'lightbg' 'darkbg' %}">
@@ -84,10 +84,7 @@
 
     </div>
 
-    <div class="onecol">
-    </div>
-
-    <div class="threecol">
+    <div class="fivecol last">
        
         {% if not no_marks %}
             {% for recent in latest %}
@@ -97,6 +94,7 @@
                         <span class="light">by <a href="/profile/{{ recent.owner }}/">{{ recent.owner }}</a></span>
                         <span class="light">added {{ recent.added|timesince }} ago </span>
                     </div>
+
                 {% endif %}
             {% endfor %}
         {% endif %}
@@ -106,20 +104,23 @@
 
 {% else %}
 
-    <div class="row">
-        <div class="fourcol">
-            <p class="welcome">
-            Hi. Let me introduce myself, I'm <strong>marked</strong>. I
-            aim to take care of your bookmarks. Anywhere. On your phone, your desktop,
-            your tablet. If it has a web browser, I'll play nicely. I like to do things
-            as simple as possible. I'm clarity for your post bookmarkist world.
-            (pronounced: post book marxist)</p>
+<div class="row">
+    <div class="fourcol">
+        <p class="welcome">
+        Hi. Let me introduce myself, I'm <strong>marked</strong>. I
+        aim to take care of your bookmarks. Anywhere. On your phone, your desktop,
+        your tablet. If it has a web browser, I'll play nicely. I like to do things
+        as simple as possible. I'm clarity for your post bookmarkist world.
+        (pronounced: post book marxist)</p>
 
-            <p class="welcome">
-            We're currently in closed ultra ghetto beta. If you have a login, please do so
-            <a href="/accounts/login/">log in.</a></p>
-        </div>
+        <p class="welcome">
+        We're currently in closed ultra ghetto beta. If you have a login, please do so
+        <a href="/accounts/login/">log in.</a></p>
     </div>
+
+    <div class="eightcol last">
+    </div>
+</div>
 
 {% endif %}
 

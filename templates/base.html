@@ -10,8 +10,7 @@
     
 	<link rel="stylesheet" type="text/css" media="screen" href="/static/css/1140.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/static/css/ie.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="/static/css/style.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="/static/css/master.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/static/css/styles.css" />
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 
 	<!--css3-mediaqueries-js - http://code.google.com/p/css3-mediaqueries-js/ - Enables media queries in some unsupported browsers-->
@@ -58,25 +57,41 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="sixcol">
+            <div class="sevencol">
                 <h1>{% block site-name %}<a href="/" title="return to your marked">marked.</a>{% endblock site-name %}</h1>
-            </div>
-            <div class="onecol bookmarklet">
-                {% if user.is_authenticated %}
-                        <!--<a href="javascript:(function(){ window.open('http://localhost:8000/save/?link='+encodeURIComponent(location.href)+'&title='+document.title); })();" class="drag">bookmarklet (debug)</a>-->
-                        <a id="bookmarklet" href="javascript:(function(){ window.open('http://marked.goodnightstudio.com/save/?link='+encodeURIComponent(location.href)+'&title='+document.title); })();" class="drag">bookmarklet</a>
-                {% endif %}
 
             </div>
-            <!--<div class="onecol logout login">-->
-                <!--<a href="http://considerthatmarked.tumblr.com/">blog</a>-->
-            <!--</div>-->
-            <div class="onecol logout login">
-                {% if user.is_authenticated %}
-                    <a href="/accounts/logout/" class="logout">logout</a>
-                {% else %}
-                    <a href="/accounts/login/?next=/" class="logout">login</a>
-                {% endif %}
+
+            <div class="fivecol last logout login">
+                <ul class="top_links">
+                    <li>
+                        {% if not no_marks %}
+                            {% if user.is_authenticated %}
+                                {% ifequal path "/everyone/" %}
+                                    <a href="/everyone/" class="selected">everyone</a>
+                                {% else %}
+                                    <a href="/everyone/">everyone</a>
+                                {% endifequal %}
+                            {% endif %}
+                        {% endif %}
+                    </li>
+
+                    <li>
+                        {% if user.is_authenticated %}
+                                <!--<a href="javascript:(function(){ window.open('http://localhost:8000/save/?link='+encodeURIComponent(location.href)+'&title='+document.title); })();" class="drag">bookmarklet (debug)</a>-->
+                                <a id="bookmarklet" href="javascript:(function(){ window.open('http://marked.goodnightstudio.com/save/?link='+encodeURIComponent(location.href)+'&title='+document.title); })();" class="drag">bookmarklet</a>
+                        {% endif %}
+                    </li>
+
+                    <li>
+                        {% if user.is_authenticated %}
+                            <a href="/accounts/logout/" class="logout">logout</a>
+                        {% else %}
+                            <a href="/accounts/login/?next=/" class="logout">login</a>
+                        {% endif %}
+                    </li>
+                </ul>
+
             </div>
 
         </div>

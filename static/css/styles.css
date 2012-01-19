@@ -1,0 +1,298 @@
+/* ============================== */
+/* ! Layout for desktop version   */
+/* ============================== */
+
+    * {
+        font-family:  Helvetica, sans-serif;
+    }
+
+	body {
+        background: #f9f9f9;
+	}
+
+    /* typography */
+
+    h1 {
+        font-size: 24px;
+        line-height: 19px;
+    }
+
+    h3 {
+        font-size: 16px;
+        line-height: 19px;
+    }
+
+    p.info {
+        /*font-size: 150%;*/
+        font-size: 16px;
+    }
+
+    p.user {
+        /*font-size: 110%;*/
+        font-size: 16px;
+    }
+
+    form.login input[type="text"],
+    form.login input[type="password"] {
+        font-size: 16px;
+    }
+
+    .marks input#mark_title {
+        /*font-size: normal;*/
+        font-size: 16px;
+    }
+
+    .marks a.mark {
+        font-size: 16px;
+    }
+
+    .marks a {
+        line-height: 19px;
+        font-size: 14px;
+    }
+
+    .marks p, .marks span {
+        line-height: 19px;
+        font-size: 14px;
+    }
+
+    p.welcome {
+        /*font-size: larger;*/
+        font-size: 16px;
+    }
+
+    p.recent h3 {
+        /*font-size: smaller !important;*/
+        font-size: 16px;
+    }
+
+    form.save input[type="text"],
+    form.edit input[type="text"],
+    {
+        font-size: 16px;
+        line-height: 1.75em;
+    }
+
+    form.save a.privacy {
+        /*font-size: larger;*/
+        font-size: 16px;
+    }
+
+    ul.top_links li a {
+        font-size: 14px;
+        line-height: 19px;
+    }
+
+    /* end typography */
+
+
+    h1 {
+	    color: #00c19c;
+    }
+
+    h1 a {
+        color: #00c19c !important;
+        text-decoration: none;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    ul.messages {
+        padding: 0;
+        font-style: italic;
+        color: #00C19C;
+    }
+
+    .container {
+        padding-top: 45px;
+        border-top: 5px solid #00c19c;
+    }
+
+    input[type='text'], input[type='password'] {
+        background-color: #fff;
+        border: 1px solid #aaa;
+        padding: 2px 0px 2px 2px;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    p, label {
+        color: #aaa;
+    }
+
+
+    p.time, span.light, .light {
+        color: #ddd;
+        /*margin-top: 5px;*/
+    }
+
+    form.login {
+        padding-top: 20px;
+    }
+
+    a.mark, a.logout, a, a:visited, a:link {
+        color: #00c19c;
+        text-decoration: none;
+    }
+
+    a.mark:hover, a.logout:hover, a:hover {
+        text-decoration: underline;
+        color: #00c19c;
+    }
+
+    a.selected {
+        text-decoration: underline !important;
+    }
+
+    p.info {
+        padding: 10px 0;
+        line-height: 1.7em;
+    }
+
+    .pad {
+        padding: 10px 0;
+    }
+
+    .marks:hover {
+    }
+
+    .pad.marks {
+        padding: 20px 0;
+    }
+
+    .pad.marks h3 {
+        margin: 0 0 5px 0;
+        color: #00c19c;
+    }
+
+    .marks input#mark_title {
+        margin-bottom: 5px;
+        width: 100%;
+        padding: 2px 0px 2px 2px;
+        line-height: 1.75em;
+    }
+
+    .marks input[type="submit"]#mark_save {
+        margin: 20px 0;
+    }
+
+    .marks select#mark_privacy {
+        margin: 10px 0;
+    }
+
+    div.recent_link {
+        text-align: right;
+    }
+
+    ul.top_links {
+        padding: 12px 0 0 0;
+        margin: 0;
+    }
+
+    ul.top_links li {
+        display: inline;
+        padding-right: 10px;
+    }
+
+    p.welcome {
+        padding: 20px 0;
+        line-height: 1.7em;
+    }
+
+    a.light, a.light:link, a.light:visited,
+    .light a, .light a:link, .light a:visited,
+    h3.light {
+        color: #aaa !important;
+    }
+
+    p.recent {
+        padding: 0;
+        margin: 0;
+    }
+
+
+    a.privacy {
+        color: #ddd;
+        /*text-indent: -9999px;*/
+        /*display: block;*/
+        /*height: 5px;*/
+        /*width: 5px;*/
+    }
+
+    a.privacy.public {
+        font-weight: bold;
+        /*background: #00c19c;*/
+        color: #00c19c;
+    }
+
+    a.privacy.private {
+        /*background: #ff7878;*/
+        color: #ff7878;
+    }
+
+    div.info a.delete:link {
+        color: #ff7878;
+    }
+
+    /*
+     *for the save page
+     */
+
+    div.row.big-pad {
+        padding: 60px 0 0 0;
+    }
+
+    form.save p {
+        padding: 5px 0;
+    }
+
+
+    form.save input[type="text"] {
+        width: 100%;
+    }
+
+    form.save input[type="submit"] {
+        display: none;
+    }
+
+
+    .drag {
+        cursor: move;
+    }
+
+    form.save a.privacy {
+        margin: 20px 10px 0 0;
+        display: inline-block;
+    }
+
+
+============================= 
+! Layout for mobile version   
+============================= 
+
+@media handheld, only screen and (max-width: 767px) {
+
+	body {
+		
+	}
+
+}
+
+
+/* ========================================== */
+/* ! Provide higher res assets for iPhone 4   */
+/* ========================================== */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) { 
+
+/*	.logo {
+		background: url(logo2x.jpg) no-repeat;
+		background-size: 212px 303px;
+	}*/
+
+}
+

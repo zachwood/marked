@@ -12,6 +12,8 @@ urlpatterns = patterns('',
     url(r'^$', 'bookmarks.views.home', name='home'),
     url(r'^save/$', 'bookmarks.views.bookmarklet_save', name="save"),
 
+    url(r'^everyone/$', 'bookmarks.views.everyone', name="everyone"),
+
     url(r'^mark/(?P<mark_id>\d+)/view/$', 'bookmarks.views.view_mark', name="view_mark"),
     url(r'^mark/(?P<mark_id>\d+)/update/$', 'bookmarks.views.update_mark', name="update_mark"),
 

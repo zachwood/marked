@@ -9,12 +9,12 @@
 {% if user.is_authenticated %}
 
 <div class="row pad marks">
-    <div class="fivecol">
+    <div class="sixcol">
 
         {% for mark in marks %}
             <div class="marks pad">
 
-                <form method="post" action="/mark/{{ mark.pk }}/update/">
+                <form method="post" class="edit" action="/mark/{{ mark.pk }}/update/">
                 {% csrf_token %}
 
                 <input type="text" value="{{ mark.title }}" name="mark_title" id="mark_title" />
