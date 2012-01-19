@@ -9,5 +9,8 @@ class Bookmark(models.Model):
     title = models.CharField(max_length=255, null=False, blank=True)
     public = models.BooleanField()
 
+    class Meta:
+        ordering = ["-added"]
+
     def __unicode__(self):
         return u'%s' % self.url

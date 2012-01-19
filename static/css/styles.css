@@ -32,9 +32,10 @@
         font-size: 16px;
     }
 
-    form.login input[type="text"],
-    form.login input[type="password"] {
+    input[type="text"],
+    input[type="password"] {
         font-size: 16px;
+        line-height: 19px;
     }
 
     .marks input#mark_title {
@@ -64,13 +65,6 @@
     p.recent h3 {
         /*font-size: smaller !important;*/
         font-size: 16px;
-    }
-
-    form.save input[type="text"],
-    form.edit input[type="text"],
-    {
-        font-size: 16px;
-        line-height: 1.75em;
     }
 
     form.save a.privacy {

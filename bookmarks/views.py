@@ -80,7 +80,8 @@ def view_mark(request, mark_id):
 
 @login_required
 def everyone(request):
-    users = UserProfile.objects.all().order_by('bookmark__added');
+    #users = UserProfile.objects.order_by('total_marks');
+    users = sorted(UserProfile.objects.all(), key=lambda a: a.total_marks, reverse=True)
 
     path = request.path
 
