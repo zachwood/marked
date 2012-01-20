@@ -99,9 +99,15 @@
         color: #00C19C;
     }
 
-    .container {
-        padding-top: 45px;
+    .container.content {
+        padding-top: 10px;
+        border-top: 1px solid #eee;
+    }
+
+    .container.top {
+        padding: 45px 0 10px 0;
         border-top: 5px solid #00c19c;
+        background: #fff;
     }
 
     input[type='text'], input[type='password'] {
