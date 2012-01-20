@@ -80,8 +80,13 @@ def view_mark(request, mark_id):
 
 @login_required
 def everyone(request):
-    #users = UserProfile.objects.order_by('total_marks');
-    users = sorted(UserProfile.objects.all(), key=lambda a: a.total_marks, reverse=True)
+    users = sorted(UserProfile.objects.all(), key=lambda a: a.last_added_unix, reverse=True)
+
+    #for user in users:
+        #try:
+            #print user.last_added_unix
+        #except IndexError:
+            #pass
 
     path = request.path
 

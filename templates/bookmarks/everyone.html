@@ -16,13 +16,12 @@
 <div class="row pad marks">
 
     <div class="twocol pad">
+        <p class="user"><b>
+            <a href="/profile/{{ markuser.user }}/">{{ markuser.user.username }}</a>
+        </b></p>
+
         {% ifequal markuser.user user %}
-            <p class="user"><b>{{ markuser.user.username }}</b>({{ total_marks }})</p>
             <p class="light">this is you</p>
-        {% else %}
-            <p class="user"><b>
-                <a href="/profile/{{ markuser.user }}/">{{ markuser.user.username }}</a>({{ total_marks }})
-            </b></p>
         {% endifequal %}
     </div>
 
