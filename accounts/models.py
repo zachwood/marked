@@ -12,7 +12,8 @@ class UserProfile(models.Model):
     last_added = property(_get_last_added)
 
     def _get_last_added_unix(self):
-        if self.bookmark_set.count():
+        print self.bookmark_set.count()
+        if self.bookmark_set.count() > 0:
             mark = self.bookmark_set.all().filter(public=True).order_by('-added')[0]
             epoch = int(time.mktime(mark.added.timetuple())*1000)
         else:
