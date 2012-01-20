@@ -14,8 +14,11 @@ class UserProfile(models.Model):
     def _get_last_added_unix(self):
         print self.bookmark_set.count()
         if self.bookmark_set.count() > 0:
-            mark = self.bookmark_set.all().filter(public=True).order_by('-added')[0]
-            epoch = int(time.mktime(mark.added.timetuple())*1000)
+            try:
+                mark = self.bookmark_set.all().filter(public=True).order_by('-added')[0]
+                epoch = int(time.mktime(mark.added.timetuple())*1000)
+            except IndexError:
+                epoch = 1
         else:
             epoch = 1
         return "%i" % epoch
