@@ -5,3 +5,4 @@ lib/
 include/
 settings_deploy.py
 *.un~
+.DS_Store
