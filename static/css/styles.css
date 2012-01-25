@@ -105,7 +105,8 @@
     }
 
     .container.top {
-        padding: 45px 20px 10px 20px;
+        padding-top: 45px;
+        padding-bottom: 10px;
         border-top: 5px solid #00c19c;
         background: #fff;
     }
