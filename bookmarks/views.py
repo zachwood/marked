@@ -37,8 +37,11 @@ def home(request):
 @login_required
 def user_page(request, show_user):
     check_user = get_object_or_404(User, username=show_user)
+    user_profile = UserProfile.objects.get(user = request.user)
 
     path = request.path
+
+    favs = user_profile.favorites
 
     if request.user.username == show_user:
         page_owner = True
@@ -56,7 +59,7 @@ def user_page(request, show_user):
 
     return render_to_response('home.html', { 'marks': marks, 
             'local_bookmarklet': False, 'show_user': show_user, 'page_owner': page_owner,
-            'no_marks': no_marks, 'latest': latest },
+            'no_marks': no_marks, 'latest': latest, 'favs': favs },
             context_instance=RequestContext(request) )
 
 
@@ -77,6 +80,22 @@ def view_mark(request, mark_id):
     
     return render_to_response('bookmarks/view_mark.html', { 'marks': marks },
             context_instance=RequestContext(request) )
+
+@login_required
+def favorite_mark(request, mark_id):
+
+    mark = get_object_or_404(Bookmark, pk=mark_id)
+
+    user_profile = UserProfile.objects.get(user = request.user)
+    
+    user_profile.favorite = mark
+    user_profile.save();
+    
+    fav_message = "%s has been added to your favorites" % mark.title
+
+    messages.add_message(request, messages.INFO, fav_message)
+
+    return redirect(user_profile)
 
 @login_required
 def everyone(request):

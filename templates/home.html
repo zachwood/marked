@@ -93,10 +93,22 @@
                         <h3 class="light"><a href="{{ recent.url }}" class="latest light" target="_blank">{{ recent.title }}</a></h3>
                         <span class="light"><a href="/profile/{{ recent.owner }}/">{{ recent.owner }}</a></span>
                         <span class="light"> {{ recent.added|timesince }} ago </span>
+                        <a href="/mark/{{ recent.id }}/favorite/">+fav</a>
                     </div>
-
                 {% endif %}
-            {% endfor %}
+            {% endfor %} {# end recent marks #}
+
+            {% for fav in favs_set %}
+                {% if page_owner %}
+                    <div class="favs marks pad">
+                        <h3 class="light"><a href="{{ fav.url }}" class="latest light" target="_blank">{{ fav.title }}</a></h3>
+                        <span class="light"><a href="/profile/{{ fav.owner }}/">{{ fav.owner }}</a></span>
+                        <span class="light"> {{ fav.added|timesince }} ago </span>
+                        <a href="/mark/{{ fav.id }}/favorite/">+fav</a>
+                    </div>
+                {% endif %}
+            {% endfor %} {# end favorites #}
+
         {% endif %}
     </div>
 
@@ -104,6 +116,7 @@
     </div>
 
 </div>
+
 
 {% else %}
 
