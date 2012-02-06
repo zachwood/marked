@@ -1,10 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+#from bookmarks.models import Bookmark
+
 import time
 
 class UserProfile(models.Model):
     user = models.ForeignKey(User, unique=True, related_name='profile')
+    favorites = models.ManyToManyField('bookmarks.Bookmark')
 
     def _get_last_added(self):
         return "%i" % self.bookmark_set.filter(public=True).order_by('-added')
