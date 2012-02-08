@@ -14,3 +14,8 @@ class Bookmark(models.Model):
 
     def __unicode__(self):
         return u'%s' % self.url
+
+class Favorite(models.Mode):
+    bookmark = ForeignKey(Bookmark)
+    added = models.DateTimeField(auto_now_add=True)
+    # many to many for user?
