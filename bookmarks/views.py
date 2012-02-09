@@ -7,7 +7,7 @@ from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.template import RequestContext, loader
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
-from bookmarks.models import Bookmark
+from bookmarks.models import Bookmark, Favorite
 from accounts.models import UserProfile
 from django.contrib.auth.models import User
 
@@ -41,8 +41,8 @@ def user_page(request, show_user):
 
     path = request.path
 
-    favs = user_profile.favorites
-
+    favorites = user_profile.favorites.all()[0:25];
+    
     if request.user.username == show_user:
         page_owner = True
         marks = Bookmark.objects.filter(owner=request.user).order_by('-added')
@@ -59,7 +59,7 @@ def user_page(request, show_user):
 
     return render_to_response('home.html', { 'marks': marks, 
             'local_bookmarklet': False, 'show_user': show_user, 'page_owner': page_owner,
-            'no_marks': no_marks, 'latest': latest, 'favs': favs },
+            'no_marks': no_marks, 'latest': latest, 'favorites': favorites },
             context_instance=RequestContext(request) )
 
 
@@ -87,11 +87,23 @@ def favorite_mark(request, mark_id):
     mark = get_object_or_404(Bookmark, pk=mark_id)
 
     user_profile = UserProfile.objects.get(user = request.user)
+
+    check = Favorite.objects.filter(bookmark = mark)
+
+    if not check:
+        # they haven't already favorited this
     
-    user_profile.favorite = mark
-    user_profile.save();
-    
-    fav_message = "%s has been added to your favorites" % mark.title
+        # create favorite
+        favorite = Favorite(bookmark = mark)
+        favorite.save();
+
+        # link it to the user profile
+        user_profile.favorites.add(favorite);
+        
+        fav_message = "%s has been added to your favorites" % mark.title
+    else:
+        # they have already favorited this
+        fav_message = "You have already favorited %s" % mark.title
 
     messages.add_message(request, messages.INFO, fav_message)
 

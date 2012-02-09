@@ -66,7 +66,7 @@
     <div class="sevencol">
 
         {% for mark in marks %}
-            <div class="marks pad {% cycle 'lightbg' 'darkbg' %}">
+            <div class="marks pad">
                 <h3><a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.title }}</a></h3>
                 <a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.url|urlizetrunc:50 }}</a>&nbsp;
                 {% if page_owner %}
@@ -78,6 +78,9 @@
 
                     <!--<a href="/mark/{{ mark.pk }}/delete/" class="delete">delete</a>-->
                 {% endif %}
+                {% if not page_owner %}
+                        <!--<a href="/mark/{{ recent.id }}/favorite/">+fav</a>-->
+                {% endif %}
                 <p class="time">added {{ mark.added|timesince }} ago</p>
             </div>
         {% endfor %}
@@ -87,27 +90,33 @@
     <div class="fourcol">
        
         {% if not no_marks %}
-            {% for recent in latest %}
-                {% if page_owner %}
-                    <div class="recent marks pad {% cycle 'light' 'dark' %}">
+            {% if page_owner %}
+                {% for recent in latest %}
+                    <div class="recent marks pad">
                         <h3 class="light"><a href="{{ recent.url }}" class="latest light" target="_blank">{{ recent.title }}</a></h3>
                         <span class="light"><a href="/profile/{{ recent.owner }}/">{{ recent.owner }}</a></span>
                         <span class="light"> {{ recent.added|timesince }} ago </span>
+                        {# I don't like this #}
+                        {% for favorite in favorites %}
+                            {% ifequal recent.id favorite.bookmark.id  %}
+                                true
+                            {% endifequal %}
+                        {% endfor %}
+
+                        {{ recent.favorited_by }}
                         <a href="/mark/{{ recent.id }}/favorite/">+fav</a>
                     </div>
-                {% endif %}
-            {% endfor %} {# end recent marks #}
+                {% endfor %} {# end recent marks #}
 
-            {% for fav in favs_set %}
-                {% if page_owner %}
-                    <div class="favs marks pad">
-                        <h3 class="light"><a href="{{ fav.url }}" class="latest light" target="_blank">{{ fav.title }}</a></h3>
-                        <span class="light"><a href="/profile/{{ fav.owner }}/">{{ fav.owner }}</a></span>
-                        <span class="light"> {{ fav.added|timesince }} ago </span>
-                        <a href="/mark/{{ fav.id }}/favorite/">+fav</a>
-                    </div>
-                {% endif %}
-            {% endfor %} {# end favorites #}
+                {% for favorite in favorites %}
+                    {% if forloop.counter <= 10 %}
+                        <div class="favorites marks pad">
+                            <h3 class="light"><a href="{{ favorite.bookmark.url }}" class="latest light" target="_blank">{{ favorite.bookmark.title }}</a></h3>
+                            <span class="light"><a href="/profile/{{ favorite.bookmark.owner }}/">{{ favorite.bookmark.owner }}</a></span>
+                        </div>
+                    {% endif %}
+                {% endfor %} {# end favorites #}
+            {% endif %}
 
         {% endif %}
     </div>
