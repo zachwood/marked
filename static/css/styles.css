@@ -22,6 +22,13 @@
         line-height: 19px;
     }
 
+    hr {
+        padding: 0;
+        border: 0 none;
+        border-top: 1px solid #ddd;
+        height: 1px;
+    }
+
     p.info {
         /*font-size: 150%;*/
         font-size: 16px;
@@ -207,7 +214,7 @@
     a.light, a.light:link, a.light:visited,
     .light a, .light a:link, .light a:visited,
     h3.light {
-        color: #aaa !important;
+        color: #aaa;
     }
 
     p.recent {
@@ -233,6 +240,40 @@
     a.privacy.private {
         /*background: #ff7878;*/
         color: #ff7878;
+    }
+
+    a.favorite {
+        display: inline-block;
+        height: 9px;
+        width: 12px;
+        background: url(/static/img/hearts.png) 0 0 no-repeat;
+        text-indent: -9999px;
+    }
+
+    a.favorite:hover {
+        background-position: -12px 0;
+    }
+
+    h3 a.favorite {
+        margin: 0 0 2px 3px;
+    }
+
+    .favorites .light.user a:link,
+    .favorites .light.user a:visited {
+        color: #ddd;
+    }
+
+    hr.favorites {
+        /*border-color: #f23434;*/
+    }
+
+    p.section.favorites {
+        /*color: #f23434;*/
+    }
+
+    p.section.favorites a {
+        color: #ddd;
+        float: right;
     }
 
     div.info a.delete:link {

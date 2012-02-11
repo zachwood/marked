@@ -21,6 +21,8 @@ urlpatterns = patterns('',
     url(r'^profile/(?P<show_user>\w+)/$', 'bookmarks.views.user_page', name="show_user"),
     url(r'^profile/(?P<show_user>\w+)/public/$', 'bookmarks.views.public_marks', name="public_marks"),
 
+    url(r'^profile/(?P<show_user>\w+)/favorites/$', 'bookmarks.views.view_favorites', name="view_favorites"),
+
     #url(r'^accounts/register/$', 'accounts.views.register', name="register"),
 
     (r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'accounts/login.html'}),

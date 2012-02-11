@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block site-name %}
+    <a href="/" title="return to your marked">marked</a>(by everyone)
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<div class="row pad marks">
+
+    <div class="twocol pad">
+
+        {% if show_user == user.username %}
+            <p class="light">these are your favorites</p>
+        {% else %}
+            <p class="light">{{ show_user }}&rsquo;s favorites</p>
+        {% endif %}
+
+    </div>
+
+    <div class="sevencol pad">
+
+        {% if favorites %}
+
+            {% for favorite in favorites %}
+
+                <div class="favorites marks">
+                    <h3 class="light"><a href="{{ favorite.bookmark.url }}" class="latest light" target="_blank">
+                            {{ favorite.bookmark.title }}
+                    </a></h3>
+                    <span class="user light"><a href="/profile/{{ favorite.bookmark.owner }}/">{{ favorite.bookmark.owner }}</a></span>
+                </div>
+                <div class="pad"></div>
+
+            {% endfor %}
+
+        {% else %}
+            <div class="favorites marks">
+                <p>Sad, it doesn't look like {{ show_user }} has any favorites!</p>
+            </div>
+        {% endif %}
+        
+    </div>
+
+    <div class="threecol last">
+    </div>
+
+</div>
+
+
+</div>
+{% else %}
+    <p>Sorry, you're not logged in!</p>
+{% endif %}
+
+{% endblock content %}
+
+
+

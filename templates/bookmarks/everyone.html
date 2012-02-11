@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load favorites_extras %}
+
 {% block site-name %}
     <a href="/" title="return to your marked">marked</a>(by everyone)
 {% endblock %}
@@ -10,9 +12,6 @@
 
 {% for markuser in users %}
 
-{% with total_marks=markuser.bookmark_set.count %}
-
-{% if total_marks %}
 <div class="row pad marks">
 
     <div class="twocol pad">
@@ -27,8 +26,19 @@
 
     <div class="sevencol pad">
         {% for mark in markuser.three_recent_set %}
-            <div class="marks {% cycle 'lightbg' 'darkbg' %}">
-                <h3><a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.title }}</a></h3>
+            <div class="marks">
+                <h3>
+                    <a href="{{ mark.url }}" class="mark" target="_blank">
+                        {% if mark.title %}
+                            {{ mark.title }}
+                        {% else %}
+                            {{ mark.url|domain_only }}
+                        {% endif %}
+                    </a>
+                    {% if recent.id|not_favorited_by:user.id %}
+                        <a href="/mark/{{ recent.id }}/favorite/" class="favorite">+fav</a>
+                    {% endif %}
+                </h3>
                 <a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.url|urlizetrunc:50 }}</a>&nbsp;
                 <p class="time">added {{ mark.added|timesince }} ago</p>
             </div>
@@ -41,9 +51,6 @@
     </div>
 
 </div>
-{% endif %} {# if total_marks #}
-
-{% endwith %}
 
 {% endfor %} {# markuser in users #}
 

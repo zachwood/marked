@@ -22,12 +22,6 @@ def home(request):
             link = request.POST['link']
             check_save_url(request, link)
 
-    #marks = Bookmark.objects.filter(owner=request.user).order_by('-added')
-
-    #return render_to_response('home.html', { 'marks': marks, 
-            #'local_bookmarklet': False },
-            #context_instance=RequestContext(request) )
-
     # messages.add_message(request, messages.INFO, 'December 10th: We have released a new version of our');
 
 
@@ -41,7 +35,7 @@ def user_page(request, show_user):
 
     path = request.path
 
-    favorites = user_profile.favorites.all()[0:25];
+    favorites = user_profile.favorites.all()[0:10];
     
     if request.user.username == show_user:
         page_owner = True
@@ -84,11 +78,11 @@ def view_mark(request, mark_id):
 @login_required
 def favorite_mark(request, mark_id):
 
-    mark = get_object_or_404(Bookmark, pk=mark_id)
+    mark = get_object_or_404(Bookmark, pk=mark_id, public = True)
 
     user_profile = UserProfile.objects.get(user = request.user)
 
-    check = Favorite.objects.filter(bookmark = mark)
+    check = Favorite.objects.filter(bookmark = mark, userprofile__user = request.user)
 
     if not check:
         # they haven't already favorited this
@@ -110,14 +104,17 @@ def favorite_mark(request, mark_id):
     return redirect(user_profile)
 
 @login_required
+def view_favorites(request, show_user):
+
+    favorites = Favorite.objects.filter(userprofile__user__username = show_user)
+
+    return render_to_response('bookmarks/favorites.html', {'favorites': favorites,
+            'show_user': show_user },
+            context_instance=RequestContext(request) )
+
+@login_required
 def everyone(request):
     users = sorted(UserProfile.objects.all(), key=lambda a: a.last_added_unix, reverse=True)
-
-    #for user in users:
-        #try:
-            #print user.last_added_unix
-        #except IndexError:
-            #pass
 
     path = request.path
 
