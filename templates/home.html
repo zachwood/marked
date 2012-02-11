@@ -81,7 +81,11 @@
                     <!--<a href="/mark/{{ mark.pk }}/delete/" class="delete">delete</a>-->
                 {% endif %}
                 {% if not page_owner %}
-                        <!--<a href="/mark/{{ recent.id }}/favorite/">+fav</a>-->
+                        {% if mark.id|not_favorited_by:user.id %}
+                        <a href="/mark/{{ mark.id }}/favorite/?redirect={% url bookmarks.views.user_page show_user=show_user %}" class="favorite">+fav</a>
+                        {% else %}
+                            <a href="/mark/{{ mark.id }}/unfavorite/?redirect={% url bookmarks.views.user_page show_user=show_user %}" class="favorite favorited">+fav</a>
+                        {% endif %}
                 {% endif %}
                 <p class="time">{{ mark.added|timesince }} ago</p>
             </div>

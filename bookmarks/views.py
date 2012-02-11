@@ -223,8 +223,9 @@ def bookmarklet_save(request):
 def handle_redirect(request, user_profile):
     if request.method == 'GET':
         try:
-            if request.GET['redirect'] == 'everyone':
-                return redirect(everyone)
+            if request.GET['redirect']:
+                url = request.GET['redirect']
+                return redirect(url)
         except:
             pass
 
