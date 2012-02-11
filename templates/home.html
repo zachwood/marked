@@ -111,18 +111,21 @@
                     </div>
                 {% endfor %} {# end recent marks #}
 
-                <hr class="favorites" />
-                <p class="section favorites">favorites <a href="/profile/{{ user }}/favorites/">more</a></p>
+                {% if favorites %}
 
-                {% for favorite in favorites %}
-                    <div class="favorites marks pad">
-                        <h3 class="light"><a href="{{ favorite.bookmark.url }}" class="latest light" target="_blank">
-                                {{ favorite.bookmark.title }}
-                        </a></h3>
-                        <span class="user light"><a href="/profile/{{ favorite.bookmark.owner }}/">{{ favorite.bookmark.owner }}</a></span>
-                    </div>
-                {% endfor %} {# end favorites #}
-            {% endif %}
+                    <hr class="favorites" />
+                    <p class="section favorites">favorites <a href="/profile/{{ user }}/favorites/">more</a></p>
+
+                    {% for favorite in favorites %}
+                        <div class="favorites marks pad">
+                            <h3 class="light"><a href="{{ favorite.bookmark.url }}" class="latest light" target="_blank">
+                                    {{ favorite.bookmark.title }}
+                            </a></h3>
+                            <span class="user light"><a href="/profile/{{ favorite.bookmark.owner }}/">{{ favorite.bookmark.owner }}</a></span>
+                        </div>
+                    {% endfor %} {# end favorites #}
+                {% endif %} {# if favorites #}
+            {% endif %}     {# if page_owner #}
 
         {% endif %}
     </div>

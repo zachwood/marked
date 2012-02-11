@@ -35,9 +35,11 @@
                             {{ mark.url|domain_only }}
                         {% endif %}
                     </a>
-                    {% if recent.id|not_favorited_by:user.id %}
-                        <a href="/mark/{{ recent.id }}/favorite/" class="favorite">+fav</a>
-                    {% endif %}
+                    {% ifnotequal markuser.user user %}
+                        {% if mark.id|not_favorited_by:user.id %}
+                            <a href="/mark/{{ mark.id }}/favorite/" class="favorite">+fav</a>
+                        {% endif %}
+                    {% endifnotequal %}
                 </h3>
                 <a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.url|urlizetrunc:50 }}</a>&nbsp;
                 <p class="time">added {{ mark.added|timesince }} ago</p>
