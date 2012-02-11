@@ -107,6 +107,8 @@
                         <span class="light"> {{ recent.added|timesince }} ago </span>
                         {% if recent.id|not_favorited_by:user.id %}
                             <a href="/mark/{{ recent.id }}/favorite/" class="favorite">+fav</a>
+                        {% else %}
+                            <a href="/mark/{{ recent.id }}/unfavorite/" class="favorite favorited">+fav</a>
                         {% endif %}
                     </div>
                 {% endfor %} {# end recent marks #}

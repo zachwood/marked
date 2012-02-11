@@ -18,6 +18,8 @@ urlpatterns = patterns('',
     url(r'^mark/(?P<mark_id>\d+)/update/$', 'bookmarks.views.update_mark', name="update_mark"),
     url(r'^mark/(?P<mark_id>\d+)/favorite/$', 'bookmarks.views.favorite_mark', name="favorite_mark"),
 
+    url(r'^mark/(?P<mark_id>\d+)/unfavorite/$', 'bookmarks.views.unfavorite_mark', name="unfavorite_mark"),
+
     url(r'^profile/(?P<show_user>\w+)/$', 'bookmarks.views.user_page', name="show_user"),
     url(r'^profile/(?P<show_user>\w+)/public/$', 'bookmarks.views.public_marks', name="public_marks"),
 

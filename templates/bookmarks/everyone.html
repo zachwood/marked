@@ -37,7 +37,9 @@
                     </a>
                     {% ifnotequal markuser.user user %}
                         {% if mark.id|not_favorited_by:user.id %}
-                            <a href="/mark/{{ mark.id }}/favorite/" class="favorite">+fav</a>
+                            <a href="/mark/{{ mark.id }}/favorite/?redirect=everyone" class="favorite">+fav</a>
+                        {% else %}
+                            <a href="/mark/{{ mark.id }}/unfavorite/?redirect=everyone" class="favorite favorited">+fav</a>
                         {% endif %}
                     {% endifnotequal %}
                 </h3>

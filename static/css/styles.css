@@ -254,6 +254,14 @@
         background-position: -12px 0;
     }
 
+    a.favorite.favorited {
+        background-position: -12px 0;
+    }
+
+    a.favorite.favorited:hover {
+        background-position: -24px 0;
+    }
+
     h3 a.favorite {
         margin: 0 0 2px 3px;
     }

@@ -101,7 +101,34 @@ def favorite_mark(request, mark_id):
 
     messages.add_message(request, messages.INFO, fav_message)
 
+    if request.method == 'GET':
+        if request.GET['redirect'] == 'everyone':
+            return redirect(everyone)
+
     return redirect(user_profile)
+
+@login_required
+def unfavorite_mark(request, mark_id):
+    mark = get_object_or_404(Bookmark, pk = mark_id, public = True)
+
+    user_profile = UserProfile.objects.get(user = request.user)
+
+    favorite = Favorite.objects.get(bookmark__id = mark_id, 
+            userprofile = user_profile)
+
+    #print vars(favorite)
+    user_profile.favorites.remove(favorite)
+
+    fav_message = "%s is no longer in your favorites" % mark.title
+
+    messages.add_message(request, messages.INFO, fav_message)
+
+    if request.method == 'GET':
+        if request.GET['redirect'] == 'everyone':
+            return redirect(everyone)
+
+    return redirect(user_profile)
+
 
 @login_required
 def view_favorites(request, show_user):
