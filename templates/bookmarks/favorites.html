@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load favorites_extras %}
+
 {% block site-name %}
     <a href="/" title="return to your marked">marked</a>(your favorites)
 {% endblock %}
@@ -30,6 +32,7 @@
                     <h3 class="light"><a href="{{ favorite.bookmark.url }}" class="latest light" target="_blank">
                             {{ favorite.bookmark.title }}
                     </a></h3>
+                    <span class="light"><a href="{{ favorite.bookmark.url }}" class="light" target="_blank">{{ favorite.bookmark.url|domain_only|urlizetrunc:50 }}</a></span>
                     <span class="user light"><a href="/profile/{{ favorite.bookmark.owner }}/">{{ favorite.bookmark.owner }}</a></span>
                 </div>
                 <div class="pad"></div>
