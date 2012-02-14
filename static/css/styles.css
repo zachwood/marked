@@ -244,22 +244,22 @@
 
     a.favorite {
         display: inline-block;
-        height: 9px;
-        width: 12px;
+        height: 11px;
+        width: 11px;
         background: url(/static/img/hearts.png) 0 0 no-repeat;
         text-indent: -9999px;
     }
 
     a.favorite:hover {
-        background-position: -12px 0;
+        background-position: -13px 0;
     }
 
     a.favorite.favorited {
-        background-position: -12px 0;
+        background-position: -13px 0;
     }
 
     a.favorite.favorited:hover {
-        background-position: -24px 0;
+        background-position: -25px 0;
     }
 
     h3 a.favorite {
