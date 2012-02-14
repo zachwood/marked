@@ -1,0 +1,20 @@
+{% load favorites_extras %}
+
+{% for recent in latest %}
+    <div class="recent marks pad">
+            <h3 class="light"><a href="{{ recent.url }}" class="latest light" target="_blank">
+                {% if recent.title %}
+                    {{ recent.title }}
+                {% else %}
+                    {{ recent.url }}
+                {% endif %}
+            </a></h3>
+        <span class="light"><a href="/profile/{{ recent.owner }}/">{{ recent.owner }}</a></span>
+        <span class="light"> {{ recent.added|timesince }} ago </span>
+        {% if recent.id|not_favorited_by:user.id %}
+            <a href="/mark/{{ recent.id }}/favorite/" class="favorite">+fav</a>
+        {% else %}
+            <a href="/mark/{{ recent.id }}/unfavorite/" class="favorite favorited">+fav</a>
+        {% endif %}
+    </div>
+{% endfor %} {# end recent marks #}

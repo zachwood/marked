@@ -15,7 +15,6 @@ class UserProfile(models.Model):
     last_added = property(_get_last_added)
 
     def _get_last_added_unix(self):
-        print self.bookmark_set.count()
         if self.bookmark_set.count() > 0:
             try:
                 mark = self.bookmark_set.all().filter(public=True).order_by('-added')[0]

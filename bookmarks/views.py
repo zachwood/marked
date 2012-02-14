@@ -33,8 +33,6 @@ def user_page(request, show_user):
     check_user = get_object_or_404(User, username=show_user)
     user_profile = UserProfile.objects.get(user = request.user)
 
-    path = request.path
-
     favorites = user_profile.favorites.all()[0:10];
     
     if request.user.username == show_user:
@@ -136,10 +134,15 @@ def view_favorites(request, show_user):
 def everyone(request):
     users = sorted(UserProfile.objects.all(), key=lambda a: a.last_added_unix, reverse=True)
 
-    path = request.path
-
     return render_to_response('bookmarks/everyone.html', { 'users': users,
-            'path': path },
+            },
+            context_instance=RequestContext(request) )
+
+@login_required
+def recent(request):
+    latest = Bookmark.objects.filter(public=True).exclude(owner__user__username=request.user).order_by('-added')[:50]
+
+    return render_to_response('bookmarks/recent.html', { 'latest': latest },
             context_instance=RequestContext(request) )
 
 @login_required

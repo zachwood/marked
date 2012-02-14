@@ -196,6 +196,14 @@
         text-align: right;
     }
 
+    div.dropdown {
+        padding: 9px 0 0 0;
+    }
+
+    div.dropdown select {
+        width: 100%;
+    }
+
     ul.top_links {
         padding: 9px 0 0 0;
         margin: 0;

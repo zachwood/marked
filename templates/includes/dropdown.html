@@ -1,0 +1,40 @@
+<select id="nav-select">
+    <optgroup label="me">
+
+        {% ifequal path "/profile/"|add:user.username|add:"/" %}
+            <option value="/profile/{{ user }}/" selected="selected">my marks</option>
+        {% else %}
+            <option value="/profile/{{ user }}/">my marks</option>
+        {% endifequal %}
+        
+        {% ifequal path "/profile/"|add:user.username|add:"/favorites/" %}
+            <option value="/profile/{{ user }}/favorites/" selected="selected">favorites</option>
+        {% else %}
+            <option value="/profile/{{ user }}/favorites/">favorites</option>
+        {% endifequal %}
+
+    </optgroup> 
+    <optgroup label="others">
+
+        {% ifequal path "/everyone/" %}
+            <option value="/everyone/" selected="selected">everyone</option>
+        {% else %}
+            <option value="/everyone/">everyone</option>
+        {% endifequal %}
+        
+        {% ifequal path "/recent/" %}
+            <option value="/recent/" selected="selected">recent</option>
+        {% else %}
+            <option value="/recent/">recent</option>
+        {% endifequal %}
+
+        {% if show_user %}
+            {% ifnotequal show_user user.username %}
+                <option value="/profile/{{ showuser }}/" selected="selected">{{ show_user }}</option>
+            {% endifnotequal %}
+        {% endif %}
+
+    </optgroup>
+        
+
+</select>

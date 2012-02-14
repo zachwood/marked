@@ -61,7 +61,7 @@
 
 </div>
 {% else %}
-    <p>Sorry, you're not logged in!</p>
+    {% include 'includes/not_authenticated.html' %}
 {% endif %}
 
 {% endblock content %}

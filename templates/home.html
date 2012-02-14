@@ -14,41 +14,10 @@
 
 {% if user.is_authenticated %}
 
-<!--
-   -<div class="row pad">
-   -    <div class="fourcol">
-   -        <form method="post" action="/">
-   -            {% csrf_token %}
-   -            <label for="link"></label>
-   -            <input type='text' value="" name="link" id="link" />
-   -            <input type="submit" value="add mark" />
-   -        </form>
-   -    </div>
-   -</div>
-   -->
-
 {% if no_marks and page_owner %}
 <div class="row pad">
     <div class="fivecol">
-        <p class="info">
-            Welcome! It looks like you haven't saved any marks yet.
-            All you need to do, to get started, is to drag the bookmarklet
-            in the top right of this site to your browser's bookmark bar.
-        </p>
-
-        <p class="info">
-            Then, click that bookmarklet in your browser
-            bar whenever you're on a site that you want save for later.
-        </p>
-
-        <p class="info">
-            Once you start saving marks, they'll show up right
-            here on your home page.
-        </p>
-
-        <p class="info">
-            Pretty easy, huh?
-        </p>
+        {% include 'includes/first_login.html' %}
     </div>
 </div>
 {% endif %}
@@ -66,71 +35,16 @@
 
 <div class="row pad marks">
     <div class="sevencol">
-
-        {% for mark in marks %}
-            <div class="marks pad">
-                <h3><a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.title }}</a></h3>
-                <a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.url|domain_only|urlizetrunc:50 }}</a>&nbsp;
-                {% if page_owner %}
-                    {% if mark.public %}
-                        <a href="/mark/{{ mark.pk }}/view/" class="privacy public" alt="public" title="{{ mark.pk }}: public">#</a>
-                    {% else %}
-                        <a href="/mark/{{ mark.pk }}/view/" class="privacy private" alt="private" title="{{ mark.pk }}: private">#</a>
-                    {% endif %}
-
-                    <!--<a href="/mark/{{ mark.pk }}/delete/" class="delete">delete</a>-->
-                {% endif %}
-                {% if not page_owner %}
-                        {% if mark.id|not_favorited_by:user.id %}
-                        <a href="/mark/{{ mark.id }}/favorite/?redirect={% url bookmarks.views.user_page show_user=show_user %}" class="favorite">+fav</a>
-                        {% else %}
-                            <a href="/mark/{{ mark.id }}/unfavorite/?redirect={% url bookmarks.views.user_page show_user=show_user %}" class="favorite favorited">+fav</a>
-                        {% endif %}
-                {% endif %}
-                <p class="time">{{ mark.added|timesince }} ago</p>
-            </div>
-        {% endfor %}
-
+        {% include 'includes/list_marks.html' %}
     </div>
 
     <div class="fourcol">
        
         {% if not no_marks %}
             {% if page_owner %}
-                
-                {% for recent in latest %}
-                    <div class="recent marks pad">
-                            <h3 class="light"><a href="{{ recent.url }}" class="latest light" target="_blank">
-                                {% if recent.title %}
-                                    {{ recent.title }}
-                                {% else %}
-                                    {{ recent.url }}
-                                {% endif %}
-                            </a></h3>
-                        <span class="light"><a href="/profile/{{ recent.owner }}/">{{ recent.owner }}</a></span>
-                        <span class="light"> {{ recent.added|timesince }} ago </span>
-                        {% if recent.id|not_favorited_by:user.id %}
-                            <a href="/mark/{{ recent.id }}/favorite/" class="favorite">+fav</a>
-                        {% else %}
-                            <a href="/mark/{{ recent.id }}/unfavorite/" class="favorite favorited">+fav</a>
-                        {% endif %}
-                    </div>
-                {% endfor %} {# end recent marks #}
 
-                {% if favorites %}
+                {% include 'includes/recent_module.html' %} 
 
-                    <hr class="favorites" />
-                    <p class="section favorites">favorites <a href="/profile/{{ user }}/favorites/">more</a></p>
-
-                    {% for favorite in favorites %}
-                        <div class="favorites marks pad">
-                            <h3 class="light"><a href="{{ favorite.bookmark.url }}" class="latest light" target="_blank">
-                                    {{ favorite.bookmark.title }}
-                            </a></h3>
-                            <span class="user light"><a href="/profile/{{ favorite.bookmark.owner }}/">{{ favorite.bookmark.owner }}</a></span>
-                        </div>
-                    {% endfor %} {# end favorites #}
-                {% endif %} {# if favorites #}
             {% endif %}     {# if page_owner #}
 
         {% endif %}
@@ -144,23 +58,7 @@
 
 {% else %}
 
-<div class="row">
-    <div class="fourcol">
-        <p class="welcome">
-        Hi. Let me introduce myself, I'm <strong>marked</strong>. I
-        aim to take care of your bookmarks. Anywhere. On your phone, your desktop,
-        your tablet. If it has a web browser, I'll play nicely. I like to do things
-        as simple as possible. I'm clarity for your post bookmarkist world.
-        (pronounced: post book marxist)</p>
-
-        <p class="welcome">
-        We're currently in closed ultra ghetto beta. If you have a login, please do so
-        <a href="/accounts/login/">log in.</a></p>
-    </div>
-
-    <div class="eightcol last">
-    </div>
-</div>
+    {% include 'includes/not_authenticated.html' %}
 
 {% endif %}
 

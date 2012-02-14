@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% load favorites_extras %}
+
+{% block site-name %}
+    <a href="/" title="return to your marked">marked</a>(recently added)
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<div class="row pad marks">
+
+    <div class="twocol pad">
+
+            <p class="light">these are fifty marks recently added by everyone</p>
+
+    </div>
+
+    <div class="sevencol pad">
+
+
+        {% for recent in latest %}
+            <div class="recent marks pad">
+                    <h3 class="light"><a href="{{ recent.url }}" class="latest light" target="_blank">
+                        {% if recent.title %}
+                            {{ recent.title }}
+                        {% else %}
+                            {{ recent.url }}
+                        {% endif %}
+                    </a></h3>
+                <span class="light"><a href="/profile/{{ recent.owner }}/">{{ recent.owner }}</a></span>
+                <span class="light"> {{ recent.added|timesince }} ago </span>
+                {% if recent.id|not_favorited_by:user.id %}
+                    <a href="/mark/{{ recent.id }}/favorite/?redirect=recent" class="favorite">+fav</a>
+                {% else %}
+                    <a href="/mark/{{ recent.id }}/unfavorite/?redirect=recent" class="favorite favorited">+fav</a>
+                {% endif %}
+            </div>
+        {% endfor %} {# end recent marks #}
+        
+    </div>
+
+    <div class="threecol last">
+    </div>
+
+</div>
+
+
+</div>
+{% else %}
+    {% include 'includes/not_authenticated.html' %}
+{% endif %}
+
+{% endblock content %}
+
+
+
+

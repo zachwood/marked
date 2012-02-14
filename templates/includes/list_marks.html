@@ -1,0 +1,26 @@
+{% load favorites_extras %}
+
+{% for mark in marks %}
+    <div class="marks pad">
+        <h3><a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.title }}</a></h3>
+        <a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.url|domain_only|urlizetrunc:50 }}</a>&nbsp;
+        {% if page_owner %}
+            {% if mark.public %}
+                <a href="/mark/{{ mark.pk }}/view/" class="privacy public" alt="public" title="{{ mark.pk }}: public">#</a>
+            {% else %}
+                <a href="/mark/{{ mark.pk }}/view/" class="privacy private" alt="private" title="{{ mark.pk }}: private">#</a>
+            {% endif %}
+
+            <!--<a href="/mark/{{ mark.pk }}/delete/" class="delete">delete</a>-->
+        {% endif %}
+        {% if not page_owner %}
+                {% if mark.id|not_favorited_by:user.id %}
+                <a href="/mark/{{ mark.id }}/favorite/?redirect={% url bookmarks.views.user_page show_user=show_user %}" class="favorite">+fav</a>
+                {% else %}
+                    <a href="/mark/{{ mark.id }}/unfavorite/?redirect={% url bookmarks.views.user_page show_user=show_user %}" class="favorite favorited">+fav</a>
+                {% endif %}
+        {% endif %}
+        <p class="time">{{ mark.added|timesince }} ago</p>
+    </div>
+{% endfor %}
+

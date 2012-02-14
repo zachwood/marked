@@ -21,6 +21,7 @@
 	<!--[if IE]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
+
     {% block extra-head %}
     {% endblock extra-head %}
 
@@ -36,6 +37,10 @@
 
             $('#bookmarklet').attr('href', old_bookmarklet);
 
+            $('select#nav-select').change(function() {
+                window.location.replace($(this).val());
+            });
+            
         });
     </script>
 
@@ -60,19 +65,27 @@
     <div class="container top">
         <div class="row">
             <div class="sevencol">
-                <h1>{% block site-name %}<a href="/" title="return to your marked">marked.</a>{% endblock site-name %}</h1>
+                <h1 class="site-title">
+                    {% block site-name %}
+                        <a href="/" title="return to your marked">marked.</a>
+                    {% endblock site-name %}</h1>
 
             </div>
+            <div class="twocol dropdown">
+                {% if user.is_authenticated %}
+                    {% include 'includes/dropdown.html' %}
+                {% endif %}
+            </div>
 
-            <div class="fivecol last logout login">
+            <div class="threecol last logout login">
                 <ul class="top_links">
                     <li>
                         {% if not no_marks %}
                             {% if user.is_authenticated %}
                                 {% ifequal path "/everyone/" %}
-                                    <a href="/everyone/" class="selected">everyone</a>
+                                    <!--<a href="/everyone/" class="selected">everyone</a>-->
                                 {% else %}
-                                    <a href="/everyone/">everyone</a>
+                                    <!--<a href="/everyone/">everyone</a>-->
                                 {% endifequal %}
                             {% endif %}
                         {% endif %}
