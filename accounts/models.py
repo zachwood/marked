@@ -7,7 +7,7 @@ import time
 
 class UserProfile(models.Model):
     user = models.ForeignKey(User, unique=True, related_name='profile')
-    favorites = models.ManyToManyField('bookmarks.Favorite')
+    favorites = models.ManyToManyField('bookmarks.Favorite', blank=True)
 
     def _get_last_added(self):
         return "%i" % self.bookmark_set.filter(public=True).order_by('-added')
