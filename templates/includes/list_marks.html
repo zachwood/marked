@@ -3,7 +3,7 @@
 {% for mark in marks %}
     <div class="marks pad">
         <h3><a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.title }}</a></h3>
-        <a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.url|domain_only }}</a>&nbsp;
+        <a href="{{ mark.url|domain_only }}" class="mark" target="_blank">{{ mark.url|domain_only }}</a>&nbsp;
         {% if page_owner %}
             {% if mark.public %}
                 <a href="/mark/{{ mark.pk }}/view/" class="privacy public" alt="public" title="{{ mark.pk }}: public">#</a>

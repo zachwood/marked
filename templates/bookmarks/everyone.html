@@ -25,30 +25,29 @@
     </div>
 
     <div class="sevencol pad">
-        {% for mark in markuser.three_recent_set %}
-            <div class="marks">
-                <h3>
-                    <a href="{{ mark.url }}" class="mark" target="_blank">
-                        {% if mark.title %}
-                            {{ mark.title }}
-                        {% else %}
-                            {{ mark.url|domain_only }}
-                        {% endif %}
-                    </a>
-                    {% ifnotequal markuser.user user %}
-                        {% if mark.id|not_favorited_by:user.id %}
-                            <a href="/mark/{{ mark.id }}/favorite/?redirect=everyone" class="favorite">+fav</a>
-                        {% else %}
-                            <a href="/mark/{{ mark.id }}/unfavorite/?redirect=everyone" class="favorite favorited">+fav</a>
-                        {% endif %}
-                    {% endifnotequal %}
-                </h3>
-                <a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.url|urlizetrunc:50 }}</a>&nbsp;
-                <p class="time">added {{ mark.added|timesince }} ago</p>
-            </div>
-            <div class="pad"></div>
-        {% endfor %}
-
+            {% for mark in markuser.three_recent_set %}
+                <div class="marks">
+                    <h3>
+                        <a href="{{ mark.url }}" class="mark" target="_blank">
+                            {% if mark.title %}
+                                {{ mark.title }}
+                            {% else %}
+                                {{ mark.url|domain_only }}
+                            {% endif %}
+                        </a>
+                        {% ifnotequal markuser.user user %}
+                            {% if mark.id|not_favorited_by:user.id %}
+                                <a href="/mark/{{ mark.id }}/favorite/?redirect=everyone" class="favorite">+fav</a>
+                            {% else %}
+                                <a href="/mark/{{ mark.id }}/unfavorite/?redirect=everyone" class="favorite favorited">+fav</a>
+                            {% endif %}
+                        {% endifnotequal %}
+                    </h3>
+                    <a href="{{ mark.url }}" class="mark" target="_blank">{{ mark.url|urlizetrunc:50 }}</a>&nbsp;
+                    <p class="time">added {{ mark.added|timesince }} ago</p>
+                </div>
+                <div class="pad"></div>
+            {% endfor %}
     </div>
 
     <div class="threecol last">

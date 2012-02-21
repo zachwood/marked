@@ -22,7 +22,7 @@ def home(request):
             link = request.POST['link']
             check_save_url(request, link)
 
-    # messages.add_message(request, messages.INFO, 'December 10th: We have released a new version of our');
+    #messages.add_message(request, messages.INFO, 'December 10th: We have released a new version of our');
 
 
     user_profile = UserProfile.objects.get(user = request.user)

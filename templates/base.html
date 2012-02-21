@@ -28,18 +28,6 @@
             <div class="threecol last logout login">
                 <ul class="top_links">
                     <li>
-                        {% if user.is_authenticated %}
-                            {% if not no_marks %}
-                                {% ifequal path "/everyone/" %}
-                                    <!--<a href="/everyone/" class="selected">everyone</a>-->
-                                {% else %}
-                                    <!--<a href="/everyone/">everyone</a>-->
-                                {% endifequal %}
-                            {% endif %}
-                        {% endif %}
-                    </li>
-
-                    <li>
                         <a href="http://considerthatmarked.tumblr.com/">blog</a>
                     </li>
 
@@ -66,28 +54,28 @@
     </div>
     <div class="container content">
 
-        <div class="row">
-            <div class="fivecol">
-                {% if messages %}
+        {% if messages %}
+
+        <div class="row messages">
+            <div class="twelvecol last">
                 <ul class="messages">
                     {% for message in messages %}
                     <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
                     {% endfor %}
                 </ul>
-                {% endif %}
             </div>
         </div>
+
+        {% endif %} {# endif messages #}
                 
         {% block content %}
 
         {% endblock content %}
     </div>
 
-    {% if user.is_authenticated %}
     <div class="container footer">
         {% include "includes/footer.html" %}
     </div>
-    {% endif %}
  
 </body>
 </html>

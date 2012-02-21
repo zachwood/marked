@@ -1,5 +1,7 @@
 <div class="row">
 
+    {% if user.is_authenticated %}
+
     <div class="threecol">
         <p><a href="/profile/{{ user }}/">home</a></p>
         <p><a href="/profile/{{ user }}/all/">all my marks</a></p>
@@ -33,4 +35,14 @@
         </p>
         
     </div>
+
+    {% else %}
+
+    <div class="threecol">
+
+        <p>If you're super anxious about getting in, email us: 
+        hello&nbsp;(at)&nbsp;goodnightstudios.com. To increase your chances
+        of getting in, include a couple links of what you would share.</p>
+
+    {% endif %}
 </div>
