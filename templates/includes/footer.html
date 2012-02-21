@@ -2,22 +2,25 @@
 
     {% if user.is_authenticated %}
 
-    <div class="threecol">
-        <p><a href="/profile/{{ user }}/">home</a></p>
-        <p><a href="/profile/{{ user }}/all/">all my marks</a></p>
-        <p><a href="/profile/{{ user }}/favorites/">favorites</a></p>
+    {% if not no_marks %}
+        <div class="threecol">
+            <p><a href="/profile/{{ user }}/">home</a></p>
+            <p><a href="/profile/{{ user }}/all/">all my marks</a></p>
+            <p><a href="/profile/{{ user }}/favorites/">favorites</a></p>
 
-        <p class="padded">
-            <a href="/accounts/logout/" class="logout">logout</a>
-        </p>
-    </div>
+            <p class="padded">
+                <a href="/accounts/logout/" class="logout">logout</a>
+            </p>
+        </div>
 
-    <div class="threecol">
-        <p><a href="/everyone/">everyone</a></p>
-        <p><a href="/recent/">recent</a></p>
-    </div>
+        <div class="threecol">
+            <p><a href="/everyone/">everyone</a></p>
+            <p><a href="/recent/">recent</a></p>
+        </div>
 
-    <div class="onecol"></div>
+        <div class="onecol"></div>
+
+    {% endif %} {# not no_marks #}
     
     <div class="threecol">
 
