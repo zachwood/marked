@@ -82,6 +82,12 @@
 
         {% endblock content %}
     </div>
+
+    {% if user.is_authenticated %}
+    <div class="container footer">
+        {% include "includes/footer.html" %}
+    </div>
+    {% endif %}
  
 </body>
 </html>

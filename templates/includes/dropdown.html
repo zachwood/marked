@@ -2,9 +2,15 @@
     <optgroup label="me">
 
         {% ifequal path "/profile/"|add:user.username|add:"/" %}
-            <option value="/profile/{{ user }}/" selected="selected">my marks</option>
+            <option value="/profile/{{ user }}/" selected="selected">home</option>
         {% else %}
-            <option value="/profile/{{ user }}/">my marks</option>
+            <option value="/profile/{{ user }}/">home</option>
+        {% endifequal %}
+
+        {% ifequal path "/profile/"|add:user.username|add:"/all/" %}
+            <option value="/profile/{{ user }}/all/" selected="selected">all my marks</a>
+        {% else %}
+            <option value="/profile/{{ user }}/all/">all my marks</a>
         {% endifequal %}
         
         {% ifequal path "/profile/"|add:user.username|add:"/favorites/" %}
@@ -12,6 +18,7 @@
         {% else %}
             <option value="/profile/{{ user }}/favorites/">favorites</option>
         {% endifequal %}
+
 
     </optgroup> 
     <optgroup label="others">

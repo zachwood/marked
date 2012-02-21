@@ -28,12 +28,13 @@ class UserProfile(models.Model):
     last_added_unix = property(_get_last_added_unix)
 
     def three_recent_set(self):
-        return self.bookmark_set.order_by('-added')[:3]
+        return self.bookmark_set.order_by('-added').filter(public=True)[:3]
 
     def _get_total_marks(self):
         return int(self.bookmark_set.count())
 
     total_marks = property(_get_total_marks)
+
 
     def __unicode__(self):
         return u'%s' % self.user

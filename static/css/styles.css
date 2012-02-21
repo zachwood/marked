@@ -7,7 +7,7 @@
     }
 
 	body {
-        background: #f9f9f9;
+        background: #eee;
 	}
 
     /* typography */
@@ -109,6 +109,8 @@
     .container.content {
         padding-top: 10px;
         border-top: 1px solid #eee;
+        background: #f9f9f9;
+        padding: 0 0 40px 0;
     }
 
     .container.top {
@@ -325,6 +327,21 @@
     form.save a.privacy {
         margin: 20px 10px 0 0;
         display: inline-block;
+    }
+
+    .container.footer {
+        border-top: 1px solid #ddd;
+        background-color: #eee;
+        padding: 40px 0 80px 0;
+    }
+
+    .container.footer p, .container.footer a {
+        font-size: 12px;
+        line-height: 1.7em;
+    }
+
+    .container.footer p.padded {
+        padding: 10px 0 0 0;
     }
 
 
