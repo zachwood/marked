@@ -9,6 +9,12 @@
             <p><a href="/profile/{{ user }}/favorites/">favorites</a></p>
 
             <p class="padded">
+                {% if user.is_staff %}
+                    <a href="{% url zeus_home %}">zeus</a>
+                {% endif %}
+            </p>
+
+            <p class="padded">
                 <a href="/accounts/logout/" class="logout">logout</a>
             </p>
         </div>

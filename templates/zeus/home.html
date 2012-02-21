@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block site-name %}
+    <a href="/" title="return to your marked">marked</a>(zeus)
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_staff %}
+
+    <div class="row zeus pad top">
+
+        <div class="sevencol">
+            <p class="large">This is zeus almighty. There are
+            <strong>{{ total_bookmarks }}&nbsp;bookmarks</strong> divided among
+            <strong>{{ total_users }}&nbsp;users</strong>.</p>
+        </div>
+
+        {% include 'zeus/includes/menu.html' %}
+
+    </div>
+
+{% else %}
+
+    {% include 'includes/not_staff.html' %}
+
+{% endif %}
+
+{% endblock content %}

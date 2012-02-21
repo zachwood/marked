@@ -138,6 +138,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'accounts',
     'bookmarks',
+    'zeus',
 )
 
 # A sample logging configuration. The only tangible logging

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block site-name %}
+    <a href="/" title="return to your marked">marked</a>(zeus)
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_staff %}
+
+    <div class="row zeus pad top">
+
+        <div class="sevencol">
+            <p class="large">These are all the users on marked</p>
+            {% for user in all_users %}
+                <a href="">{{ user }}</a>
+            {% endfor %}
+        </div>
+
+        {% include 'zeus/includes/menu.html' %}
+
+    </div>
+
+{% else %}
+
+    {% include 'includes/not_staff.html' %}
+
+{% endif %}
+
+{% endblock content %}
+

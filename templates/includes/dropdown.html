@@ -19,8 +19,8 @@
             <option value="/profile/{{ user }}/favorites/">favorites</option>
         {% endifequal %}
 
-
     </optgroup> 
+
     <optgroup label="others">
 
         {% ifequal path "/everyone/" %}
@@ -42,6 +42,16 @@
         {% endif %}
 
     </optgroup>
-        
 
+    {% if user.is_staff %}
+    <optgroup label="admin">
+
+        {% ifequal path "/zeus/" %}
+            <option value="/zeus/" selected="selected">zeus main</option>
+        {% else %}
+            <option value="/zeus/">zeus main</option>
+        {% endifequal %}
+        
+    </optgroup>
+    {% endif %} {# are they staff? #}
 </select>

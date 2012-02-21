@@ -35,6 +35,8 @@ urlpatterns = patterns('',
 
     # url(r'^marked/', include('marked.foo.urls')),
 
+    url(r'^zeus/', include('marked.zeus.urls')),
+
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

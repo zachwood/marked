@@ -86,7 +86,6 @@
 
     /* end typography */
 
-
     h1 {
 	    color: #00c19c;
     }
@@ -358,6 +357,28 @@
 
     .container.footer p.padded {
         padding: 10px 0 0 0;
+    }
+
+
+   /*
+    *   zeus
+    */
+
+    .row.zeus.top {
+       padding-top: 40px;
+    } 
+
+    .row.zeus p.large {
+        font-size: 32px;
+        line-height: 1.2em;
+    }
+
+    .zeus a.disabled {
+        text-decoration: line-through;
+    }
+
+    .zeus p {
+        padding: 5px 0;
     }
 
 
