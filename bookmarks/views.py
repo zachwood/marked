@@ -24,7 +24,6 @@ def home(request):
 
     #messages.add_message(request, messages.INFO, 'December 10th: We have released a new version of our');
 
-
     user_profile = UserProfile.objects.get(user = request.user)
     return redirect(user_profile)
 

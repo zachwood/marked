@@ -25,6 +25,8 @@
 {% endfor %}
 
 {% ifequal path "/profile/"|add:user.username|add:"/" %}
-    <a href="{% url bookmarks.views.all_marks show_user=user.username %}" class="light">view all my marks</a>
+    {% if not no_marks %}
+        <a href="{% url bookmarks.views.all_marks show_user=user.username %}" class="light">view all my marks</a>
+    {% endif %}
 {% endifequal %}
 

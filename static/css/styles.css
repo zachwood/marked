@@ -100,12 +100,14 @@
         list-style: none;
     }
 
+    .container.messages {
+    }
+
     .row.messages {
         font-size: 14px;
         padding: 10px;
-        background: #eee;
         color: #aaa;
-        border-bottom: 1px solid #999;
+        background: #eee;
     }
     
     ul.messages {

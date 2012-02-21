@@ -36,12 +36,11 @@
             window.location.replace($(this).val());
         });
 
-
         $('ul.messages li').each(function(index) {
             var waitTime = (index * 750) + 10000;
             $(this).delay(waitTime).slideUp();
             if( (index + 1) == $('ul.messages li').length ) {
-                $('.row.messages').delay(waitTime).animate({ height: 0, opacity: 0});
+                $('.container.messages').delay(waitTime).animate({ height: 0, opacity: 0});
             }
         });
         
