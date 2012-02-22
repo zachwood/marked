@@ -31,3 +31,10 @@ def domain_only(value):
     value = urlparse(value)
 
     return value.netloc
+
+@register.filter
+def domain_link(value):
+    from urlparse import urlsplit
+    value = urlsplit(value)
+
+    return "%s://%s" % (value.scheme, value.netloc)
