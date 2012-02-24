@@ -99,22 +99,17 @@
         list-style: none;
     }
 
-    .container.messages {
-    }
-
     .row.messages {
         font-size: 14px;
         padding: 10px;
-        color: #aaa;
-        background: #eee;
+        color: #8f8f8f;
+        background: #e9e9e9;
+        border-bottom: 1px solid #ccc;
     }
     
     ul.messages {
         padding: 5px 0;
         font-style: italic;
-        /*border-radius: 3px;*/
-        /*border: 1px solid #ddd;*/
-        /*background-color: #eee;*/
     }
 
     ul.messages li {
@@ -160,13 +155,26 @@
         padding-top: 20px;
     }
 
+    a.mark, h3.light a, a.light {
+        border-bottom: 1px solid #ddd;
+    }
+
+    a.mark:hover, h3.light a:hover {
+        border-bottom: 1px solid #aaa;
+        text-decoration: none;
+    }
+
+    a.favorite:hover {
+        border-bottom: none;
+    }
+
     a.mark, a.logout, a, a:visited, a:link {
         color: #00c19c;
         text-decoration: none;
     }
 
-    a.mark:hover, a.logout:hover, a:hover {
-        text-decoration: underline;
+    a.logout:hover, a:hover {
+        border-bottom: 1px solid #aaa;
         color: #00c19c;
     }
 

@@ -53,24 +53,24 @@
 
     </div>
 
-    {% if messages %}
-    <div class="container messages">
-
-        <div class="row messages">
-            <div class="twelvecol last">
-                <ul class="messages">
-                    {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-
-    </div>
-    {% endif %} {# endif messages #}
 
     <div class="container content">
 
+        {% if messages %}
+        <!--<div class="container messages">-->
+
+            <div class="row messages">
+                <div class="twelvecol last">
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+        <!--</div>-->
+        {% endif %} {# endif messages #}
         
                 
         {% block content %}

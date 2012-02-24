@@ -40,7 +40,7 @@
             var waitTime = (index * 750) + 10000;
             $(this).delay(waitTime).slideUp();
             if( (index + 1) == $('ul.messages li').length ) {
-                $('.container.messages').delay(waitTime).animate({ height: 0, opacity: 0});
+                $('.row.messages').delay(waitTime).animate({ height: 0, opacity: 0});
             }
         });
         
