@@ -355,8 +355,7 @@
 
     .container.footer {
         background-color: #eee;
-        padding-top: 40px;
-        padding-bottom: 80px;
+        padding-top: 40px 20px 80px 20px;
     }
 
     .container.footer p, .container.footer a {
@@ -401,6 +400,9 @@
 		
 	}
 
+    .container.footer {
+        padding-top: 40px 0 80px 0;
+    }
 }
 
 
@@ -414,6 +416,10 @@
 		background: url(logo2x.jpg) no-repeat;
 		background-size: 212px 303px;
 	}*/
+
+    .container.footer {
+        padding-top: 40px 0 80px 0;
+    }
 
 }
 
