@@ -2,6 +2,7 @@ from django.conf.urls.defaults import patterns, include, url
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.generic.simple import direct_to_template
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -36,6 +37,9 @@ urlpatterns = patterns('',
     # url(r'^marked/', include('marked.foo.urls')),
 
     url(r'^zeus/', include('marked.zeus.urls')),
+
+    url(r'^404/$', direct_to_template, {'template': '404.html'}),
+    url(r'^500/$', direct_to_template, {'template': '500.html'}),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
