@@ -117,7 +117,7 @@
     }
 
     .container.content {
-        padding-top: 10px;
+        padding-top: 0;
         border-top: 1px solid #eee;
         border-bottom: 1px solid #ddd;
         background: #f9f9f9;
