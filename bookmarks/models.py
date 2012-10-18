@@ -8,6 +8,7 @@ class Bookmark(models.Model):
     owner = models.ForeignKey(UserProfile)
     title = models.CharField(max_length=255, null=False, blank=True)
     public = models.BooleanField()
+    owner_active = models.BooleanField(default=True)
 
     class Meta:
         ordering = ["-added"]

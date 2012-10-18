@@ -36,17 +36,17 @@ def user_page(request, show_user):
     
     if request.user.username == show_user:
         page_owner = True
-        marks = Bookmark.objects.filter(owner=request.user).order_by('-added')[0:15]
+        marks = Bookmark.objects.filter(owner=request.user).filter(owner_active=True).order_by('-added')[0:15]
     else:
         page_owner = False
-        marks = Bookmark.objects.filter(owner__user__username=show_user).filter(public=True).order_by('-added')[0:15]
+        marks = Bookmark.objects.filter(owner__user__username=show_user).filter(owner_active=True).filter(public=True).order_by('-added')[0:15]
 
     if marks.exists():
         no_marks = False
     else:
         no_marks = True
 
-    latest = Bookmark.objects.filter(public=True).exclude(owner__user__username=request.user).order_by('-added')[:10]
+    latest = Bookmark.objects.filter(public=True).filter(owner_active=True).exclude(owner__user__username=request.user).order_by('-added')[:10]
 
     return render_to_response('home.html', { 'marks': marks, 
             'local_bookmarklet': False, 'show_user': show_user, 'page_owner': page_owner,
@@ -60,10 +60,10 @@ def all_marks(request, show_user):
 
     if request.user.username == show_user:
         page_owner = True
-        marks = Bookmark.objects.filter(owner=request.user).order_by('-added')
+        marks = Bookmark.objects.filter(owner=request.user).filter(owner_active=True).order_by('-added')
     else:
         page_owner = False
-        marks = Bookmark.objects.filter(owner__user__username=show_user).filter(public=True).order_by('-added')
+        marks = Bookmark.objects.filter(owner__user__username=show_user).filter(public=True).filter(owner_active=True).order_by('-added')
 
     return render_to_response('home.html', { 'marks': marks, 
             'page_owner': page_owner, 
@@ -73,7 +73,7 @@ def all_marks(request, show_user):
 @login_required
 def view_mark(request, mark_id):
 
-    marks = Bookmark.objects.filter(owner=request.user).filter(pk=mark_id)
+    marks = Bookmark.objects.filter(owner=request.user).filter(pk=mark_id).filter(owner_active=True)
     
     return render_to_response('bookmarks/view_mark.html', { 'marks': marks },
             context_instance=RequestContext(request) )
@@ -173,6 +173,23 @@ def update_mark(request, mark_id):
             messages.add_message(request, messages.INFO, 'Mark has been updated.')
 
     return redirect(view_mark, mark_id=mark_id)
+
+
+@login_required
+def remove_mark(request, mark_id):
+    mark = get_object_or_404(Bookmark, pk=mark_id)
+
+    # If the requesting user owns the mark, just deactivate (hide) it for them
+    if request.user == mark.owner.user:
+        mark.owner_active = False
+        mark.save()
+
+        messages.add_message(request, messages.INFO, 'Mark has been removed.')
+    else:
+        messages.add_message(request, messages.INFO, 'You didn\'t mark that!')
+    
+    user_profile = UserProfile.objects.get(user = request.user)
+    return handle_redirect(request, user_profile)
 
 @login_required
 def bookmarklet_save(request):
